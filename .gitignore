@@ -8,6 +8,7 @@ venv/
 __pycache__/
 *.pyc
 .pytest_cache/
+*.tsbuildinfo
 .arize-tmp-traces/
 dist/
 build/
