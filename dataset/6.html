@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChambaQ: La Estrategia Multicapa para el Futuro del Empleo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with Subtle Accents -->
+    <!-- Application Structure Plan: The SPA is designed as a guided journey. It starts with a high-level vision, then introduces the core 'Multicapa' strategy as the central interactive hub. Users can select a layer (SMS, Social, App) to explore its details. This task-oriented approach is more intuitive than a linear report. Following the layers, dedicated sections explain the foundational technologies (AI, Blockchain) and the project's ultimate vision (Democratization, etc.), culminating in a strategic roadmap. This structure deconstructs a complex topic into digestible, user-driven segments, enhancing comprehension. -->
+    <!-- Visualization & Content Choices: Report Info: Multi-layer strategy -> Goal: Explain tiered accessibility -> Viz: Interactive layered diagram (HTML/CSS/JS) -> Interaction: Click to reveal layer details -> Justification: Visually represents the core concept and invites exploration. Report Info: Tokenomics -> Goal: Illustrate token utility -> Viz: Donut Chart (Chart.js) -> Interaction: Hover for details -> Justification: Clearly shows the functional split of the token. Report Info: Foundational Tech (AI/Blockchain) -> Goal: Organize complex concepts -> Viz: Tabbed content cards (HTML/CSS/JS) -> Interaction: Click tabs -> Justification: Breaks down dense info into manageable, parallel topics. All choices avoid SVG/Mermaid as required. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-warm-gray-50 { background-color: #F9F9F9; }
+        .bg-warm-gray-100 { background-color: #F3F4F6; }
+        .bg-warm-gray-200 { background-color: #E5E7EB; }
+        .text-warm-gray-800 { color: #1F2937; }
+        .text-warm-gray-600 { color: #4B5563; }
+        .text-teal-500 { color: #14B8A6; }
+        .bg-teal-500 { background-color: #14B8A6; }
+        .border-teal-500 { border-color: #14B8A6; }
+        .tab-active { border-bottom: 2px solid #14B8A6; color: #1F2937; font-weight: 600; }
+        .tab-inactive { border-bottom: 2px solid transparent; color: #6B7280; }
+        .layer-card { transition: all 0.3s ease-in-out; }
+        .layer-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .section-hidden { display: none; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .chart-container { position: relative; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+    </style>
+</head>
+<body class="bg-warm-gray-50 text-warm-gray-800">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-warm-gray-800">Chamba<span class="text-teal-500">Q</span></h1>
+            <p class="mt-4 text-lg text-warm-gray-600 max-w-3xl mx-auto">Una estrategia multicapa para democratizar el acceso al empleo y la capacitación, impulsada por Inteligencia Artificial y Blockchain.</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bg-white rounded-lg shadow-md p-4 sticky top-4 z-10 mb-12 flex justify-center space-x-4 md:space-x-8">
+            <a href="#estrategia" class="text-warm-gray-600 hover:text-teal-500 transition">Estrategia Multicapa</a>
+            <a href="#tecnologia" class="text-warm-gray-600 hover:text-teal-500 transition">Tecnología Clave</a>
+            <a href="#vision" class="text-warm-gray-600 hover:text-teal-500 transition">Visión y Futuro</a>
+            <a href="#roadmap" class="text-warm-gray-600 hover:text-teal-500 transition">Hoja de Ruta</a>
+        </nav>
+
+        <!-- Section: Estrategia Multicapa -->
+        <section id="estrategia" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">La Estrategia Multicapa</h2>
+                <p class="mt-2 text-warm-gray-600 max-w-2xl mx-auto">ChambaQ asegura la inclusión y accesibilidad a través de distintas capas tecnológicas, cada una diseñada para un segmento específico de usuarios. Haz clic en una capa para explorarla.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Layer 1: SMS -->
+                <div id="layer-sms-card" class="layer-card bg-white p-6 rounded-lg shadow-sm border border-gray-200 cursor-pointer text-center" onclick="showLayerDetails('sms')">
+                    <div class="flex justify-center mb-4">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Capa 1: SMS</h3>
+                    <p class="text-warm-gray-600">Acceso Básico Universal</p>
+                </div>
+                <!-- Layer 2: Social -->
+                <div id="layer-social-card" class="layer-card bg-white p-6 rounded-lg shadow-sm border border-gray-200 cursor-pointer text-center" onclick="showLayerDetails('social')">
+                     <div class="flex justify-center mb-4">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V4a2 2 0 012-2h8a2 2 0 012 2v4z" /></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Capa 2: Redes Sociales</h3>
+                    <p class="text-warm-gray-600">Conversación Fluida</p>
+                </div>
+                <!-- Layer 3: App -->
+                <div id="layer-app-card" class="layer-card bg-white p-6 rounded-lg shadow-sm border border-gray-200 cursor-pointer text-center" onclick="showLayerDetails('app')">
+                     <div class="flex justify-center mb-4">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Capa 3: Aplicación Móvil</h3>
+                    <p class="text-warm-gray-600">Experiencia Completa</p>
+                </div>
+            </div>
+
+            <!-- Layer Details Container -->
+            <div id="layer-details-container" class="mt-12"></div>
+        </section>
+
+        <!-- Section: Tecnología Clave -->
+        <section id="tecnologia" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">Tecnología Clave</h2>
+                <p class="mt-2 text-warm-gray-600 max-w-2xl mx-auto">Dos pilares tecnológicos fundamentales sostienen el ecosistema de ChambaQ, trabajando en sinergia para crear un mercado laboral inteligente y confiable.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <div class="flex border-b border-gray-200">
+                    <button id="tab-ai" class="tech-tab tab-active px-4 py-2" onclick="switchTechTab('ai')">Inteligencia Artificial</button>
+                    <button id="tab-blockchain" class="tech-tab tab-inactive px-4 py-2" onclick="switchTechTab('blockchain')">Blockchain</button>
+                </div>
+
+                <!-- AI Content -->
+                <div id="content-ai" class="tech-content pt-6 fade-in">
+                    <h3 class="text-2xl font-semibold mb-4">IA: El Amplificador de Poder</h3>
+                    <p class="text-warm-gray-600 mb-6">La IA actúa como el motor inteligente de ChambaQ, optimizando la conexión entre talento y oportunidad. Su función es analizar, predecir y personalizar la experiencia para cada usuario, convirtiendo datos en decisiones y acciones efectivas.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-warm-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">Coincidencia Inteligente</h4>
+                            <p class="text-sm text-warm-gray-600">Utiliza Procesamiento de Lenguaje Natural (PLN) para entender a fondo currículums y ofertas, logrando emparejamientos precisos más allá de palabras clave.</p>
+                        </div>
+                        <div class="bg-warm-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">Aprendizaje Personalizado</h4>
+                            <p class="text-sm text-warm-gray-600">Identifica brechas de habilidades y recomienda rutas de capacitación (ej. vía aprende.org) para potenciar el perfil del trabajador.</p>
+                        </div>
+                        <div class="bg-warm-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">IA Conversacional</h4>
+                            <p class="text-sm text-warm-gray-600">A través de chatbots en redes sociales, ofrece una interacción fluida para buscar empleo o capacitación de forma natural e intuitiva.</p>
+                        </div>
+                         <div class="bg-warm-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">Análisis Predictivo</h4>
+                            <p class="text-sm text-warm-gray-600">Analiza tendencias del mercado para guiar a los usuarios hacia trayectorias profesionales con alta demanda y potencial de crecimiento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blockchain Content -->
+                <div id="content-blockchain" class="tech-content pt-6 section-hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Blockchain: La Base de Confianza</h3>
+                    <p class="text-warm-gray-600 mb-6">Blockchain proporciona la infraestructura de seguridad, transparencia y control para todo el ecosistema. Garantiza que la información es auténtica, inmutable y que el usuario siempre tiene soberanía sobre sus datos.</p>
+                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-warm-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">Credenciales Verificables</h4>
+                            <p class="text-sm text-warm-gray-600">Las habilidades y certificaciones se emiten como NFTs (Tokens No Fungibles), creando un historial laboral a prueba de fraudes y fácil de verificar.</p>
+                        </div>
+                        <div class="bg-warm-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">Contratos Inteligentes</h4>
+                            <p class="text-sm text-warm-gray-600">Automatizan acuerdos y pagos, asegurando que la IA acceda a datos de forma controlada y con propósito, y que los pagos se liberen al cumplir hitos.</p>
+                        </div>
+                        <div class="bg-warm-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg">Identidad Soberana</h4>
+                            <p class="text-sm text-warm-gray-600">Cada usuario controla su identidad y datos profesionales, decidiendo qué comparte y con quién, sin intermediarios.</p>
+                        </div>
+                        <div class="bg-warm-gray-50 p-4 rounded-lg col-span-1 md:col-span-2 lg:col-span-3">
+                             <h4 class="font-semibold text-lg text-center mb-2">Tokenomics: La Economía de ChambaQ (CHQ)</h4>
+                             <div class="md:flex md:items-center">
+                                 <div class="md:w-1/2 p-2">
+                                     <div class="chart-container">
+                                         <canvas id="tokenomicsChart"></canvas>
+                                     </div>
+                                 </div>
+                                 <div class="md:w-1/2 p-2 text-sm text-warm-gray-600">
+                                      <p class="mb-2">El token CHQ es el motor económico que incentiva la participación y alinea los intereses de la comunidad.</p>
+                                     <ul class="space-y-2">
+                                         <li><strong class="text-warm-gray-800">Utilidad:</strong> Acceso a funciones premium, pago de servicios y validación de habilidades.</li>
+                                         <li><strong class="text-warm-gray-800">Gobernanza:</strong> Otorga derecho a voto en decisiones clave de la plataforma (DAO).</li>
+                                         <li><strong class="text-warm-gray-800">Incentivo:</strong> Recompensa el "minado" de datos (compartir progreso de forma segura) y la finalización de cursos (Aprender-para-Ganar).</li>
+                                     </ul>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Section: Visión y Futuro -->
+        <section id="vision" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">Visión y Futuro</h2>
+                <p class="mt-2 text-warm-gray-600 max-w-2xl mx-auto">La sinergia entre las capas tecnológicas, la IA y Blockchain busca un impacto profundo y duradero en el mundo laboral.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold text-teal-500 mb-2">Democratización</h3>
+                    <p class="text-warm-gray-600">Asegurar que la oportunidad y la inteligencia colectiva lleguen a todos, sin importar su nivel tecnológico, eliminando barreras de acceso a la información.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold text-teal-500 mb-2">Protección y Autenticidad</h3>
+                    <p class="text-warm-gray-600">Garantizar que las credenciales y el historial de cada trabajador sean inmutables, verificables y a prueba de manipulaciones gracias a la seguridad de Blockchain.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold text-teal-500 mb-2">Monetización y Ahorro</h3>
+                    <p class="text-warm-gray-600">Permitir que los usuarios moneticen el compartir sus datos de progreso de forma segura, recompensando su contribución al ecosistema con tokens (CHQ) que fomentan el ahorro.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Hoja de Ruta -->
+        <section id="roadmap" class="scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">Hoja de Ruta Estratégica</h2>
+                 <p class="mt-2 text-warm-gray-600 max-w-2xl mx-auto">Un desarrollo por fases para construir y escalar la visión de ChambaQ de manera sostenible.</p>
+            </div>
+            <div class="relative">
+                <!-- Line -->
+                <div class="absolute left-1/2 -translate-x-1/2 h-full border-l-2 border-dashed border-warm-gray-300 hidden md:block"></div>
+                
+                <div class="space-y-12 md:space-y-0">
+                    <!-- Phase 1 -->
+                    <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+                        <div class="text-center md:text-right md:pr-8">
+                            <div class="bg-teal-500 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto md:mr-0">1</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md mt-4 md:mt-0">
+                            <h3 class="text-xl font-semibold mb-2">Fase 1: Plataforma Central y MVP</h3>
+                            <p class="text-warm-gray-600">Desarrollo del sistema de coincidencia de IA, implementación de credenciales verificables (Prueba de Habilidad), y construcción de la capa de contratos inteligentes. El foco es una UX fluida para la adopción inicial.</p>
+                        </div>
+                    </div>
+                    <!-- Phase 2 -->
+                     <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+                        <div class="bg-white p-6 rounded-lg shadow-md mt-4 md:mt-0 md:col-start-1 md:row-start-1 text-right">
+                             <h3 class="text-xl font-semibold mb-2">Fase 2: Expansión del Ecosistema</h3>
+                             <p class="text-warm-gray-600">Lanzamiento de la tokenómica completa (CHQ), la DAO para gobernanza comunitaria y la integración con canales de mensajería (SMS, WhatsApp, Telegram) para ampliar el alcance.</p>
+                        </div>
+                         <div class="text-center md:text-left md:pl-8">
+                            <div class="bg-teal-500 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto md:ml-0">2</div>
+                        </div>
+                    </div>
+                    <!-- Phase 3 -->
+                    <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
+                         <div class="text-center md:text-right md:pr-8">
+                            <div class="bg-teal-500 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto md:mr-0">3</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md mt-4 md:mt-0">
+                            <h3 class="text-xl font-semibold mb-2">Fase 3: Escalado Global y Funciones Avanzadas</h3>
+                            <p class="text-warm-gray-600">Introducción de herramientas predictivas de trayectoria profesional, rutas de aprendizaje personalizadas avanzadas y exploración de interoperabilidad entre cadenas para un alcance global.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<script>
+    const layerDetails = {
+        sms: {
+            title: 'Capa 1: ChambaQ a Través de SMS (Acceso Básico)',
+            content: 'Esta es la puerta de entrada más universal, diseñada para usuarios con teléfonos básicos o acceso limitado a internet. Es la base de la inclusión en ChambaQ.',
+            points: [
+                {
+                    title: 'Funcionamiento Simple',
+                    desc: 'El usuario envía un SMS con "OFICIO CÓDIGOPOSTAL" (ej. "PINTOR 42070"). El sistema procesa la solicitud con una IA ligera y responde con 3-5 trabajos disponibles.'
+                },
+                {
+                    title: 'Beneficios Clave',
+                    desc: '<strong>Acceso Universal:</strong> Llega a la población sin smartphones. <strong>Simplicidad:</strong> No requiere alfabetización digital avanzada. <strong>Bajo Costo:</strong> Usa planes básicos de SMS.'
+                },
+                {
+                    title: 'Desafíos',
+                    desc: 'La cantidad de información es limitada y la experiencia de usuario es básica, sin componentes interactivos complejos.'
+                }
+            ]
+        },
+        social: {
+            title: 'Capa 2: Agentes en Redes Sociales (Conversación Fluida)',
+            content: 'Aprovecha la familiaridad de plataformas como WhatsApp, Telegram y Facebook Messenger para ofrecer una experiencia más rica e interactiva.',
+            points: [
+                {
+                    title: 'Funcionamiento Conversacional',
+                    desc: 'Un agente (chatbot con IA) interactúa con el usuario. El sistema usa Procesamiento de Lenguaje Natural (PLN) para entender consultas como "Busco chamba de plomero en Guadalajara".'
+                },
+                {
+                    title: 'Beneficios Clave',
+                    desc: '<strong>Familiaridad:</strong> Usa apps que la gente ya conoce. <strong>Riqueza de Interacción:</strong> Permite conversaciones, envío de enlaces y opciones detalladas. <strong>Resultados Certeros:</strong> La IA ofrece emparejamientos más precisos.'
+                },
+                {
+                    title: 'Desafíos',
+                    desc: 'Requiere desarrollo e integración específicos para cada plataforma de mensajería, y la percepción de privacidad puede variar.'
+                }
+            ]
+        },
+        app: {
+            title: 'Capa 3: Aplicación Móvil (Experiencia Completa)',
+            content: 'Es el ecosistema completo de ChambaQ, ofreciendo la experiencia más rica y todas las funcionalidades avanzadas de la plataforma.',
+            points: [
+                {
+                    title: 'Funcionamiento Avanzado',
+                    desc: 'Una App nativa o PWA donde la IA (el "amplificador de poder") accede a datos encriptados del usuario (controlado por contrato inteligente) para ofrecer razonamiento predictivo y personalizado.'
+                },
+                {
+                    title: 'Beneficios Clave',
+                    desc: '<strong>Funcionalidad Completa:</strong> Acceso a educación, tokenización, y perfiles con credenciales verificables (NFTs). <strong>Experiencia Óptima:</strong> Interfaz rica y altamente interactiva. <strong>Seguridad Reforzada:</strong> Control total del usuario sobre sus datos vía Blockchain.'
+                },
+                {
+                    title: 'Desafíos',
+                    desc: 'Requiere un smartphone y conexión a internet. Necesita marketing y educación para fomentar la descarga y el uso activo.'
+                }
+            ]
+        }
+    };
+
+    let activeLayer = '';
+
+    function showLayerDetails(layer) {
+        if (activeLayer === layer) {
+            // Collapse if clicking the same card again
+            document.getElementById('layer-details-container').innerHTML = '';
+            document.getElementById(`layer-${activeLayer}-card`).classList.remove('border-teal-500', 'scale-105');
+            activeLayer = '';
+            return;
+        }
+        
+        if(activeLayer) {
+            document.getElementById(`layer-${activeLayer}-card`).classList.remove('border-teal-500', 'scale-105');
+        }
+
+        const details = layerDetails[layer];
+        const container = document.getElementById('layer-details-container');
+        
+        let pointsHtml = details.points.map(point => `
+            <div class="bg-warm-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-lg text-warm-gray-800">${point.title}</h4>
+                <p class="text-sm text-warm-gray-600">${point.desc}</p>
+            </div>
+        `).join('');
+
+        container.innerHTML = `
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg fade-in border-t-4 border-teal-500">
+                <h3 class="text-2xl font-bold mb-2">${details.title}</h3>
+                <p class="text-warm-gray-600 mb-6">${details.content}</p>
+                <div class="grid md:grid-cols-3 gap-4">
+                    ${pointsHtml}
+                </div>
+            </div>
+        `;
+        
+        activeLayer = layer;
+        document.getElementById(`layer-${layer}-card`).classList.add('border-teal-500', 'scale-105');
+        document.getElementById('layer-details-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    function switchTechTab(tab) {
+        document.querySelectorAll('.tech-tab').forEach(t => {
+            t.classList.remove('tab-active');
+            t.classList.add('tab-inactive');
+        });
+        document.getElementById(`tab-${tab}`).classList.add('tab-active');
+        document.getElementById(`tab-${tab}`).classList.remove('tab-inactive');
+        
+        document.querySelectorAll('.tech-content').forEach(c => {
+            c.classList.add('section-hidden');
+        });
+        document.getElementById(`content-${tab}`).classList.remove('section-hidden');
+        document.getElementById(`content-${tab}`).classList.add('fade-in');
+
+        if(tab === 'blockchain' && !window.tokenomicsChartInstance) {
+            renderTokenomicsChart();
+        }
+    }
+
+    function renderTokenomicsChart() {
+        const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+        window.tokenomicsChartInstance = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Utilidad (Servicios)', 'Gobernanza (Votación)', 'Incentivos (Recompensas)'],
+                datasets: [{
+                    data: [40, 25, 35],
+                    backgroundColor: [
+                        'rgba(20, 184, 166, 0.7)', // teal
+                        'rgba(75, 85, 99, 0.7)', // gray
+                        'rgba(245, 158, 11, 0.7)' // amber
+                    ],
+                    borderColor: [
+                        '#14B8A6',
+                        '#4B5563',
+                        '#F59E0B'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Smooth scrolling for nav links
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChambaQ: IA y Blockchain para Oficios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey through the ChambaQ ecosystem, structured into four thematic sections for clarity and user engagement. 1) A Hero section to state the mission. 2) An interactive tabbed section explaining the core pillars (The Worker, The Employer, The Technology) to allow users to explore from their perspective. The "Employer" pillar features the central interactive element: the T-D-C model selector. 3) A dedicated section for the project's vision and social impact. This structure was chosen over a linear report summary because it transforms abstract concepts into explorable components, making the complex synergy of AI and Blockchain understandable and engaging for all audiences. -->
+    <!-- Visualization & Content Choices: 
+        - **Worker's Journey:** Goal: Explain progression. Method: A visual, step-by-step flow using HTML/CSS, more intuitive than text. A Donut chart (Chart.js) is used to clearly show the value proposition (tokenomics). Justification: Visual flowcharts simplify complex processes.
+        - **Employer's T-D-C Model:** Goal: Demonstrate the core business logic. Method: An interactive triangle selector (HTML/JS) linked to a dynamic Bar chart (Chart.js). Justification: This is the most critical and unique concept; direct interaction provides a powerful "aha!" moment, far more effective than a static description.
+        - **Technology Synergy:** Goal: Simplify complex tech. Method: A Polar Area chart (Chart.js) and interactive info cards. Justification: A polar chart visually represents how multiple components (security, privacy) form a stronger, unified whole, effectively communicating the synergy.
+        - **All choices use Canvas rendering via Chart.js, adhering to the NO SVG/Mermaid constraint. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .tdc-option {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .tdc-option.selected {
+            background-color: #0F766E !important;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .tdc-option.disabled {
+            background-color: #D1D5DB;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .tab-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-btn.active {
+            color: #0F766E;
+            border-bottom-color: #0F766E;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-teal-800">Chamba<span class="text-amber-600">Q</span></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#ecosistema" class="text-gray-600 hover:text-teal-700">Ecosistema</a>
+                <a href="#vision" class="text-gray-600 hover:text-teal-700">Nuestra Visión</a>
+                <a href="#tecnologia" class="text-gray-600 hover:text-teal-700">Tecnología</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="py-20 md:py-32 bg-amber-50/50">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-teal-900 leading-tight">Revolucionando el Mundo de los Oficios.</h1>
+                <p class="mt-6 text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">Usamos Inteligencia Artificial y Blockchain para crear un ecosistema justo y transparente que conecta a trabajadores de oficios con oportunidades, fomenta la capacitación continua y construye un futuro próspero.</p>
+                <a href="#ecosistema" class="mt-10 inline-block bg-teal-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-teal-800 transition-transform transform hover:scale-105">Explora el Ecosistema</a>
+            </div>
+        </section>
+
+        <section id="ecosistema" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-900">El Ecosistema ChambaQ</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Un sistema diseñado para empoderar a cada participante. Descubre cómo funciona para trabajadores, empleadores y la tecnología que lo hace posible.</p>
+                </div>
+
+                <div class="mb-8 border-b border-gray-200">
+                    <div class="flex justify-center -mb-px space-x-8" id="tabs">
+                        <button class="tab-btn active text-lg font-semibold py-4 border-b-2 border-transparent" data-tab="trabajador">Para el Trabajador</button>
+                        <button class="tab-btn text-lg font-semibold py-4 border-b-2 border-transparent" data-tab="empleador">Para el Empleador</button>
+                    </div>
+                </div>
+
+                <div id="tab-content">
+                    <div id="trabajador-content" class="tab-pane active">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                            <div class="lg:col-span-2">
+                                <h3 class="text-2xl font-bold text-teal-800 mb-4">Tu Camino hacia el Éxito y la Prosperidad</h3>
+                                <p class="text-gray-600 mb-6">En ChambaQ, tu crecimiento es nuestra prioridad. Te ofrecemos un camino claro para mejorar tus habilidades, aumentar tus ingresos y asegurar tu futuro financiero. Cada paso que das es una inversión en ti mismo, validada y recompensada por nuestro ecosistema.</p>
+                                <div class="space-y-4">
+                                    <div class="p-4 bg-white rounded-lg shadow-sm flex items-center">
+                                        <div class="bg-teal-100 text-teal-700 rounded-full h-10 w-10 flex items-center justify-center font-bold mr-4">1</div>
+                                        <div>
+                                            <h4 class="font-semibold">Capacítate y Crece</h4>
+                                            <p class="text-sm text-gray-500">Accede a cursos de alta calidad de <a href="https://aprende.org/" target="_blank" class="text-teal-600 hover:underline">Aprende.org</a>, avalados por la SEP.</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 bg-white rounded-lg shadow-sm flex items-center">
+                                        <div class="bg-teal-100 text-teal-700 rounded-full h-10 w-10 flex items-center justify-center font-bold mr-4">2</div>
+                                        <div>
+                                            <h4 class="font-semibold">Certifica tus Habilidades con NFTs</h4>
+                                            <p class="text-sm text-gray-500">Cada curso completado se convierte en una credencial digital (NFT) única, inmutable y tuya para siempre.</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 bg-white rounded-lg shadow-sm flex items-center">
+                                        <div class="bg-teal-100 text-teal-700 rounded-full h-10 w-10 flex items-center justify-center font-bold mr-4">3</div>
+                                        <div>
+                                            <h4 class="font-semibold">Sube de Nivel y Tarifa</h4>
+                                            <p class="text-sm text-gray-500">Más capacitación y mejores reseñas se traducen en niveles más altos y mejores tarifas por tu trabajo.</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 bg-white rounded-lg shadow-sm flex items-center">
+                                        <div class="bg-teal-100 text-teal-700 rounded-full h-10 w-10 flex items-center justify-center font-bold mr-4">4</div>
+                                        <div>
+                                            <h4 class="font-semibold">Mina Conocimiento y Gana Tokens</h4>
+                                            <p class="text-sm text-gray-500">Al compartir datos anónimos de tus proyectos, ayudas a la IA y ganas recompensas, fomentando tu ahorro.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                 <h3 class="text-xl font-bold text-center text-teal-800 mb-4">Economía del Trabajador</h3>
+                                <div class="chart-container">
+                                    <canvas id="workerChart"></canvas>
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-4">Tus acciones en la plataforma generan valor. Este gráfico ilustra cómo se distribuyen las recompensas, incentivando un círculo virtuoso de crecimiento y aprendizaje.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="empleador-content" class="tab-pane hidden">
+                        <div class="text-center">
+                             <h3 class="text-2xl font-bold text-teal-800 mb-2">Contrata con Inteligencia: Tiempo, Dinero y Calidad</h3>
+                            <p class="text-gray-600 max-w-3xl mx-auto mb-8">Elige las dos variables más importantes para tu proyecto. Nuestro sistema te conectará con el trabajador cualificado ideal, optimizando tus recursos y garantizando resultados. Recuerda: puedes tener dos, nunca los tres.</p>
+                        </div>
+                        <div class="grid lg:grid-cols-2 gap-8 items-center">
+                            <div class="bg-white p-8 rounded-lg shadow-lg">
+                                <h4 class="text-xl font-bold text-center text-teal-800 mb-6">Define tu Prioridad</h4>
+                                <div id="tdc-selector" class="flex justify-center items-center space-x-4 mb-8">
+                                    <div data-value="tiempo" class="tdc-option bg-teal-100 text-teal-800 font-bold py-4 px-6 rounded-lg text-center">
+                                        <span>⏱️</span><br>Tiempo Rápido
+                                    </div>
+                                    <div data-value="calidad" class="tdc-option bg-teal-100 text-teal-800 font-bold py-4 px-6 rounded-lg text-center">
+                                        <span>⭐</span><br>Máxima Calidad
+                                    </div>
+                                    <div data-value="dinero" class="tdc-option bg-teal-100 text-teal-800 font-bold py-4 px-6 rounded-lg text-center">
+                                        <span>💰</span><br>Menor Costo
+                                    </div>
+                                </div>
+                                <div id="tdc-result" class="text-center p-4 bg-amber-50 rounded-lg">
+                                    <p class="font-semibold text-gray-700">Selecciona dos opciones para ver el resultado.</p>
+                                </div>
+                            </div>
+                            <div>
+                                 <h4 class="text-xl font-bold text-center text-teal-800 mb-4">Visualiza tu Decisión</h4>
+                                 <div class="chart-container">
+                                    <canvas id="employerChart"></canvas>
+                                 </div>
+                                 <p class="text-center text-sm text-gray-500 mt-4">El gráfico se actualiza en tiempo real para mostrar el impacto de tu elección. La IA de ChambaQ encuentra el equilibrio perfecto según tus necesidades, basándose en la reputación y certificaciones verificadas de nuestros trabajadores.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vision" class="py-20 bg-teal-900 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">Un Futuro de Oportunidades para Todos</h2>
+                <p class="mt-4 text-teal-200 max-w-3xl mx-auto">ChambaQ es más que una app. Es un movimiento para combatir la desigualdad y la pobreza, cambiando la mentalidad reactiva por una proactiva. Fomentamos neurohábitos de mejora continua, educación financiera y desarrollo personal, creando una comunidad de líderes y mentores que elevan a su entorno y construyen un México más próspero.</p>
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="bg-teal-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-amber-400">Más Tiempo</h3>
+                        <p class="mt-2 text-teal-200">Optimiza la búsqueda de trabajo y la contratación, liberando tiempo para lo que realmente importa: crecer y vivir mejor.</p>
+                    </div>
+                    <div class="bg-teal-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-amber-400">Más Dinero</h3>
+                        <p class="mt-2 text-teal-200">Accede a mejores tarifas y fomenta una cultura de ahorro e inversión a través de recompensas tokenizadas.</p>
+                    </div>
+                    <div class="bg-teal-800/50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-amber-400">Mejores Relaciones</h3>
+                        <p class="mt-2 text-teal-200">Construye una red de confianza entre profesionales cualificados y empleadores, basada en la transparencia y el respeto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologia" class="py-20">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-900">La Sinergia de IA y Blockchain</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Nuestra tecnología no es solo una herramienta, es la garantía de confianza, seguridad y privacidad que sustenta todo el ecosistema ChambaQ. Así es como estas dos potencias trabajan juntas.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                         <h3 class="text-xl font-bold text-center text-teal-800 mb-4">Pilares Tecnológicos</h3>
+                        <div class="chart-container">
+                             <canvas id="techChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-4">Cada tecnología aporta fortalezas únicas. Juntas, crean un sistema robusto donde la IA potencia la inteligencia y Blockchain garantiza la integridad, resultando en un ecosistema más seguro y equitativo.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-teal-800 mb-6">¿Cómo lo hacemos posible?</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-teal-700">🔐 Datos Seguros y Descentralizados</h4>
+                                <p class="text-sm text-gray-600">Blockchain crea un registro inmutable. Tus certificaciones y reputación no pueden ser alteradas ni borradas, dándote control total sobre tu identidad profesional.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-teal-700">🛡️ Autenticidad Anti-Fakes</h4>
+                                <p class="text-sm text-gray-600">La IA detecta posibles manipulaciones en fotos o videos de portafolios, y Blockchain sella el contenido auténtico con una marca de tiempo imposible de falsificar.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-teal-700">🤫 Inferencia Privada de IA</h4>
+                                <p class="text-sm text-gray-600">Nuestra IA aprende de los datos colectivos sin ver tu información personal. Gracias al cifrado avanzado, la IA realiza inferencias sobre datos encriptados, mejorando el sistema y respetando tu privacidad al 100%.</p>
+                            </div>
+                             <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-teal-700">📜 Contratos Inteligentes</h4>
+                                <p class="text-sm text-gray-600">El acceso a los datos y la ejecución de pagos están controlados por contratos inteligentes, reglas automáticas e inquebrantables que garantizan transacciones justas y transparentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 ChambaQ. Transformando vidas a través de la tecnología.</p>
+            <p class="text-sm text-gray-400 mt-2">Este es un prototipo interactivo basado en el análisis del proyecto ChambaQ.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const tdcData = {
+                'tiempo-calidad': { text: 'Resultado: Un servicio de alta calidad entregado rápidamente. Esto requiere un profesional de primer nivel, lo que se traduce en un costo más elevado.', values: [8, 10, 3] },
+                'tiempo-dinero': { text: 'Resultado: Un servicio rápido y económico. Para lograrlo, es probable que se deba sacrificar la calidad final del trabajo.', values: [9, 3, 9] },
+                'calidad-dinero': { text: 'Resultado: Un servicio de alta calidad a un costo reducido. Esto es posible si el trabajador tiene más flexibilidad en los tiempos de entrega.', values: [3, 9, 8] },
+                'default': { text: 'Selecciona dos opciones para ver el resultado.', values: [5, 5, 5] }
+            };
+
+            let workerChart, employerChart, techChart;
+            const employerChartCtx = document.getElementById('employerChart').getContext('2d');
+            
+            const employerChartConfig = {
+                type: 'bar',
+                data: {
+                    labels: ['Tiempo', 'Calidad', 'Dinero (Costo)'],
+                    datasets: [{
+                        label: 'Resultado de la Elección',
+                        data: tdcData.default.values,
+                        backgroundColor: [
+                            'rgba(13, 148, 136, 0.6)',
+                            'rgba(202, 138, 4, 0.6)',
+                            'rgba(220, 38, 38, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgb(13, 148, 136)',
+                            'rgb(202, 138, 4)',
+                            'rgb(220, 38, 38)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 10,
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    }
+                }
+            };
+            
+            employerChart = new Chart(employerChartCtx, employerChartConfig);
+
+            const tdcSelector = document.getElementById('tdc-selector');
+            const tdcResult = document.getElementById('tdc-result');
+            let selectedOptions = [];
+
+            tdcSelector.addEventListener('click', (e) => {
+                const option = e.target.closest('.tdc-option');
+                if (!option || option.classList.contains('disabled')) return;
+
+                const value = option.dataset.value;
+                const index = selectedOptions.indexOf(value);
+
+                if (index > -1) {
+                    selectedOptions.splice(index, 1);
+                    option.classList.remove('selected');
+                } else {
+                    if (selectedOptions.length < 2) {
+                        selectedOptions.push(value);
+                        option.classList.add('selected');
+                    }
+                }
+                
+                updateTDCState();
+            });
+            
+            function updateTDCState() {
+                const options = tdcSelector.querySelectorAll('.tdc-option');
+                if (selectedOptions.length === 2) {
+                    options.forEach(opt => {
+                        if (!selectedOptions.includes(opt.dataset.value)) {
+                            opt.classList.add('disabled');
+                        }
+                    });
+                    
+                    const key = selectedOptions.sort().join('-');
+                    const resultData = tdcData[key];
+                    tdcResult.innerHTML = `<p class="font-semibold text-gray-800">${resultData.text}</p>`;
+                    employerChart.data.datasets[0].data = resultData.values;
+                    employerChart.update();
+
+                } else {
+                    options.forEach(opt => opt.classList.remove('disabled'));
+                    tdcResult.innerHTML = `<p class="font-semibold text-gray-700">Selecciona dos opciones para ver el resultado.</p>`;
+                    employerChart.data.datasets[0].data = tdcData.default.values;
+                    employerChart.update();
+                }
+            }
+
+
+            const tabs = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    tabPanes.forEach(pane => {
+                        if (pane.id === `${target}-content`) {
+                            pane.classList.remove('hidden');
+                            pane.classList.add('active');
+                        } else {
+                            pane.classList.add('hidden');
+                            pane.classList.remove('active');
+                        }
+                    });
+
+                    if (target === 'trabajador' && !workerChart) {
+                        renderWorkerChart();
+                    } 
+                });
+            });
+
+            function renderWorkerChart() {
+                const workerChartCtx = document.getElementById('workerChart').getContext('2d');
+                workerChart = new Chart(workerChartCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Trabajos Completados', 'Capacitación (Learn-to-Earn)', 'Contribución de Datos (Data-to-Earn)'],
+                        datasets: [{
+                            label: 'Distribución de Valor',
+                            data: [60, 25, 15],
+                            backgroundColor: [
+                                'rgba(13, 148, 136, 0.8)',
+                                'rgba(2, 132, 199, 0.8)',
+                                'rgba(202, 138, 4, 0.8)',
+                            ],
+                            borderColor: '#FDFBF8',
+                            borderWidth: 3,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12,
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            function renderTechChart() {
+                 const techChartCtx = document.getElementById('techChart').getContext('2d');
+                 techChart = new Chart(techChartCtx, {
+                    type: 'polarArea',
+                    data: {
+                        labels: ['Seguridad', 'Privacidad', 'Transparencia', 'Autenticidad', 'Monetización'],
+                         datasets: [{
+                            label: 'Fortalezas de la Sinergia',
+                            data: [9, 10, 8, 9, 7],
+                            backgroundColor: [
+                                'rgba(13, 148, 136, 0.7)',
+                                'rgba(2, 132, 199, 0.7)',
+                                'rgba(77, 124, 15, 0.7)',
+                                'rgba(202, 138, 4, 0.7)',
+                                'rgba(217, 70, 239, 0.7)'
+                            ]
+                        }]
+                    },
+                     options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 10,
+                                ticks: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    boxWidth: 12,
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            renderWorkerChart();
+            renderTechChart();
+        });
+    </script>
+</body>
+</html>

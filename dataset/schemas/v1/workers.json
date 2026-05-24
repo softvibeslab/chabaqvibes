@@ -1,0 +1,25 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "trade", "city", "service_areas", "availability", "rate_min_mxn", "rate_max_mxn", "rating", "completed_jobs", "verification_status", "phone"],
+    "properties": {
+      "name": { "bsonType": "string" },
+      "trade": { "bsonType": "string" },
+      "trade_canonical": { "bsonType": "string" },
+      "city": { "bsonType": "string" },
+      "state": { "bsonType": "string" },
+      "service_areas": { "bsonType": "array", "items": { "bsonType": "string" } },
+      "availability": { "bsonType": "array", "items": { "bsonType": "string" } },
+      "rate_min_mxn": { "bsonType": "int" },
+      "rate_max_mxn": { "bsonType": "int" },
+      "rating": { "bsonType": ["double", "int"] },
+      "completed_jobs": { "bsonType": "int" },
+      "certifications": { "bsonType": "array", "items": { "bsonType": "string" } },
+      "verification_status": { "enum": ["verified", "pending", "unverified"] },
+      "phone": { "bsonType": "string" },
+      "languages": { "bsonType": "array", "items": { "bsonType": "string" } },
+      "notes": { "bsonType": "string" }
+    }
+  }
+}
+

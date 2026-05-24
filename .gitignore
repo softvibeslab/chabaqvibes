@@ -1,0 +1,36 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.arize-tmp-traces/
+dist/
+build/
+!agents/build/
+!agents/build/**
+.next/
+.turbo/
+coverage/
+*.log
+.logs/
+
+# Dynatrace / Monaco secrets and local outputs
+*.token
+*.secret
+*credentials*
+*credential*
+monaco.log
+.monaco/
+monaco-download/
+monaco-backup/
+**/.monaco/
+**/downloaded/
+
+# Graphify local/cache internals. Keep published graph artifacts.
+graphify-out/.graphify_*
+graphify-out/.chunk_*_files.txt

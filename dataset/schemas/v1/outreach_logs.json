@@ -1,0 +1,15 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["job_id", "worker_id", "channel", "message", "status", "created_at"],
+    "properties": {
+      "job_id": { "bsonType": "string" },
+      "worker_id": { "bsonType": "string" },
+      "channel": { "enum": ["whatsapp", "sms", "email"] },
+      "message": { "bsonType": "string" },
+      "status": { "enum": ["drafted", "approved", "sent", "failed", "cancelled"] },
+      "created_at": { "bsonType": "string" }
+    }
+  }
+}
+

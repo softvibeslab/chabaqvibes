@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chambaq.local/schemas/control-tower/hermes-agent.schema.json",
+  "title": "HermesAgent",
+  "type": "object",
+  "required": ["id", "memberId", "name", "status", "mission", "systemPromptPath", "customerPromptPath"],
+  "properties": {
+    "id": { "type": "string" },
+    "memberId": { "type": "string" },
+    "name": { "type": "string" },
+    "status": { "type": "string", "enum": ["draft", "ready", "connected", "paused", "needs_review"] },
+    "mission": { "type": "string" },
+    "systemPromptPath": { "type": "string" },
+    "customerPromptPath": { "type": "string" },
+    "profilePath": { "type": "string" },
+    "soulPath": { "type": "string" },
+    "projectKnowledgeScope": { "type": "array", "items": { "type": "string" } },
+    "personalKnowledgeScope": { "type": "array", "items": { "type": "string" } },
+    "graph": {
+      "type": "object",
+      "properties": {
+        "graphJsonPath": { "type": "string" },
+        "graphHtmlPath": { "type": "string" },
+        "reportPath": { "type": "string" },
+        "lastGeneratedAt": { "type": "string" }
+      }
+    },
+    "assignedAgencyAgents": { "type": "array", "items": { "type": "string" } },
+    "tools": { "type": "array", "items": { "type": "string" } },
+    "channels": { "type": "array", "items": { "type": "string" } },
+    "permissions": {
+      "type": "object",
+      "properties": {
+        "canEditPrompts": { "type": "boolean" },
+        "canSendExternalMessages": { "type": "boolean" },
+        "requiresApprovalForExternalMessages": { "type": "boolean" },
+        "canRunGraphify": { "type": "boolean" },
+        "canRunArizeEvaluations": { "type": "boolean" }
+      }
+    },
+    "observability": {
+      "type": "object",
+      "properties": {
+        "arizeProject": { "type": "string" },
+        "aiIntegrationId": { "type": "string" },
+        "traceEnabled": { "type": "boolean" }
+      }
+    },
+    "createdAt": { "type": "string" },
+    "updatedAt": { "type": "string" }
+  }
+}
+

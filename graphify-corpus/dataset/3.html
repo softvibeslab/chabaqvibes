@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: El Ecosistema ChambaQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- Application Structure Plan: La infografía sigue una estructura narrativa y temática para guiar al usuario. Comienza con la magnitud del problema (Mercado Laboral Informal), introduce a ChambaQ como la solución y luego desglosa sus componentes principales: el modelo de valor para empleadores (Triángulo), el impacto de la educación (Gráfico de Barras) y el modelo económico (Tokenización). Finalmente, explica la tecnología subyacente (IA + Blockchain) y concluye con el impacto humano. Esta estructura transforma un informe denso en una historia visual y lógica, optimizada para la comprensión rápida. -->
+    <!-- Visualization & Content Choices: 1. Datos del Mercado Informal: Informar -> Grandes Números -> Justificación: Impacto inmediato y fácil de entender. 2. Triángulo de Valor (Tiempo-Dinero-Calidad): Organizar -> Diagrama HTML/CSS -> Justificación: Explica un concepto de trade-off de forma visual y clara sin SVG. 3. Impacto de la Certificación CONOCER: Comparar -> Gráfico de Barras (Chart.js/Canvas) -> Justificación: Muestra la diferencia cuantitativa masiva en ingresos y beneficios, el dato más fuerte del informe. 4. Sinergia IA-Blockchain: Organizar -> Columnas Comparativas HTML/CSS -> Justificación: Presenta conceptos tecnológicos complejos de forma paralela y simplificada. Todos los métodos confirman NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-container { position: relative; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto; height: 350px; max-height: 450px; }
+        @media (min-width: 768px) { .chart-container { height: 450px; } }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">
+                <span class="text-teal-500">ChambaQ:</span> El Futuro del Trabajo en México
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Un análisis profundo de cómo la Inteligencia Artificial y Blockchain pueden transformar el mercado laboral, empoderar a los trabajadores y combatir la pobreza.</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="problema" class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-red-600 mb-6">El Desafío: La Realidad del Mercado Laboral Informal</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">México enfrenta un desafío estructural con la informalidad, creando un ciclo de precariedad para millones y pérdidas para las industrias por la falta de personal cualificado.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                        <div class="text-5xl font-extrabold text-red-600">>50%</div>
+                        <p class="mt-2 font-semibold text-gray-700">De la población ocupada trabaja en el sector informal.</p>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                        <div class="text-5xl font-extrabold text-red-600">Inestabilidad</div>
+                        <p class="mt-2 font-semibold text-gray-700">Falta de seguridad social, crédito y beneficios laborales.</p>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500">
+                        <div class="text-5xl font-extrabold text-red-600">Alta Rotación</div>
+                        <p class="mt-2 font-semibold text-gray-700">Pérdidas económicas para empresas al contratar personal no cualificado.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="solucion" class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-teal-600 mb-8">La Solución: El Triángulo de Valor de ChambaQ</h2>
+                <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">ChambaQ introduce un marco transparente para los empleadores basado en el "Triángulo de Hierro". Al contratar, un pilar siempre debe ser sacrificado, alineando expectativas y garantizando justicia.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4">
+                    <div class="p-6 bg-teal-500 text-white rounded-lg shadow-md text-center w-48 h-24 flex items-center justify-center">
+                        <span class="font-bold text-xl">🕒 TIEMPO</span>
+                    </div>
+                    <div class="text-2xl font-bold text-gray-400 transform md:-rotate-90">➔</div>
+                    <div class="p-6 bg-blue-500 text-white rounded-lg shadow-md text-center w-48 h-24 flex items-center justify-center">
+                        <span class="font-bold text-xl">⭐ CALIDAD</span>
+                    </div>
+                     <div class="text-2xl font-bold text-gray-400 transform rotate-90 md:rotate-0">➔</div>
+                    <div class="p-6 bg-indigo-500 text-white rounded-lg shadow-md text-center w-48 h-24 flex items-center justify-center">
+                         <span class="font-bold text-xl">💲 DINERO</span>
+                    </div>
+                </div>
+                <p class="text-center text-gray-600 mt-10 font-medium">Ejemplo: Si un empleador elige <span class="font-bold text-teal-600">TIEMPO</span> y <span class="font-bold text-blue-600">CALIDAD</span>, debe aceptar un costo (DINERO) más elevado. No se pueden tener los tres.</p>
+            </section>
+            
+            <section id="educacion" class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-blue-600 mb-6">El Poder de la Educación: El Impacto de la Certificación</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">La capacitación y certificación formal, como la ofrecida por CONOCER, es el motor de la movilidad económica. Los datos demuestran una transformación radical en la vida de los trabajadores.</p>
+                <div class="chart-container">
+                    <canvas id="certificationImpactChart"></canvas>
+                </div>
+                 <p class="text-center text-xs text-gray-500 mt-4">Datos basados en estudios de CONOCER en México.</p>
+            </section>
+
+            <section id="tecnologia" class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-600 mb-8">El Motor Tecnológico: La Sinergia IA + Blockchain</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-100 p-6 rounded-lg border-t-4 border-teal-500">
+                        <h3 class="text-2xl font-bold text-teal-600 mb-4 flex items-center">🔗 Blockchain</h3>
+                        <p class="text-gray-700 mb-4">Actúa como un notario digital, creando un registro de confianza inmutable.</p>
+                        <ul class="space-y-2 list-disc list-inside text-gray-600">
+                            <li><strong>Credenciales Verificables:</strong> Certificaciones y experiencia como "NFTs" de habilidades, a prueba de fraude.</li>
+                            <li><strong>Seguridad de Datos:</strong> Protege la información personal, dándole el control total al usuario.</li>
+                            <li><strong>Transparencia:</strong> Combate la corrupción y la manipulación con un historial auditable.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg border-t-4 border-blue-500">
+                        <h3 class="text-2xl font-bold text-blue-600 mb-4 flex items-center">🧠 Inteligencia Artificial</h3>
+                        <p class="text-gray-700 mb-4">Funciona como un amplificador de poder, no solo como un generador.</p>
+                         <ul class="space-y-2 list-disc list-inside text-gray-600">
+                            <li><strong>Matching Inteligente:</strong> Conecta al trabajador ideal con el empleador perfecto usando datos verificados.</li>
+                            <li><strong>Aprendizaje Personalizado:</strong> Guía a los usuarios hacia las habilidades de mayor demanda y mejor pagadas.</li>
+                            <li><strong>Inteligencia Colectiva:</strong> Aprende de toda la red para volverse más precisa, democratizando el conocimiento.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="tokenomics" class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-purple-600 mb-8">La Nueva Economía de Datos: Tokenización y Ahorro</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Inspirado en modelos como Brave (BAT), ChambaQ recompensa a los usuarios por su progreso. Aprender y trabajar genera tokens (CHQ) que fomentan una cultura de ahorro.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-purple-100">
+                                <th class="p-3 font-bold uppercase text-purple-800 text-sm">Modelo</th>
+                                <th class="p-3 font-bold uppercase text-purple-800 text-sm">Activo Recompensado</th>
+                                <th class="p-3 font-bold uppercase text-purple-800 text-sm">Beneficio para el Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="p-3 font-semibold">Brave (BAT)</td>
+                                <td class="p-3">Atención</td>
+                                <td class="p-3">Gana por navegar y ver anuncios privados.</td>
+                            </tr>
+                            <tr class="bg-purple-50">
+                                <td class="p-3 font-semibold text-purple-700">ChambaQ (CHQ)</td>
+                                <td class="p-3 text-purple-700">Progreso Educativo y Laboral</td>
+                                <td class="p-3 text-purple-700">Gana por capacitarse y trabajar, creando un ahorro a largo plazo.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold">Golem (GLM)</td>
+                                <td class="p-3">Poder Computacional</td>
+                                <td class="p-3">Monetiza el hardware inactivo de tu PC.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-16 py-8 border-t">
+            <p class="text-gray-600">Infografía basada en el Reporte de Viabilidad y Estrategia del Proyecto ChambaQ.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            const max = 16;
+            if (label.length <= max) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for(const word of words) {
+                if ((currentLine + ' ' + word).length > max) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += ' ' + word;
+                }
+            }
+            lines.push(currentLine.trim());
+            return lines.map(l => l.trim()).filter(l => l);
+        };
+        
+        const labels = ['No Certificado', 'Certificado CONOCER'].map(wrapLabel);
+        
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Ingreso Mensual (MXN)',
+                data: [6858, 13667],
+                backgroundColor: 'rgba(22, 163, 74, 0.7)',
+                borderColor: 'rgb(22, 163, 74)',
+                borderWidth: 1,
+                stack: 'Stack 0',
+            },
+            {
+                label: '% en Empleo Formal',
+                data: [50, 93],
+                backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                borderColor: 'rgb(59, 130, 246)',
+                borderWidth: 1,
+                stack: 'Stack 1',
+            },
+            {
+                label: '% con Acceso a Salud',
+                data: [45, 85],
+                backgroundColor: 'rgba(99, 102, 241, 0.7)',
+                borderColor: 'rgb(99, 102, 241)',
+                borderWidth: 1,
+                stack: 'Stack 2',
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Certificación vs. No Certificación: Comparativa de Beneficios',
+                        font: {
+                            size: 18
+                        },
+                        padding: {
+                            top: 10,
+                            bottom: 30
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                let value = context.parsed.y;
+                                if (context.dataset.label.includes('%')) {
+                                    return label + value + '%';
+                                }
+                                return label + '$' + value.toLocaleString('es-MX');
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 12,
+                                weight: '500'
+                            }
+                        },
+                        grid: { display: false }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Valor (MXN o %)'
+                        }
+                    }
+                }
+            }
+        };
+
+        const certificationImpactChart = new Chart(
+            document.getElementById('certificationImpactChart'),
+            config
+        );
+    </script>
+</body>
+</html>

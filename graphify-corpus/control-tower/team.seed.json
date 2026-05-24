@@ -1,0 +1,176 @@
+{
+  "members": [
+    {
+      "id": "member_roger",
+      "displayName": "Roger",
+      "handle": "roger",
+      "role": "Owner / Orchestrator",
+      "purpose": "Dirigir ChambaQ, coordinar equipo, agentes, prompts, conocimiento y entregables del hackathon.",
+      "status": "active",
+      "bio": "Constructor y orquestador principal de ChambaQ.",
+      "superpowers": [
+        "Vision de producto",
+        "Orquestacion de agentes",
+        "Integracion de herramientas",
+        "Narrativa de impacto",
+        "Decision rapida"
+      ],
+      "skills": [
+        "product_strategy",
+        "agent_orchestration",
+        "hackathon_delivery",
+        "knowledge_graphs",
+        "team_coordination"
+      ],
+      "agencyAgents": [
+        {
+          "name": "agents-orchestrator",
+          "sourcePath": "Sin título/agency-agents/specialized/agents-orchestrator.md",
+          "reason": "Coordinar multiples agentes y rutas de trabajo.",
+          "activationMode": "always_on"
+        },
+        {
+          "name": "project-manager-senior",
+          "sourcePath": "Sin título/agency-agents/project-management/project-manager-senior.md",
+          "reason": "Mantener prioridades, riesgos y fechas.",
+          "activationMode": "task_based"
+        },
+        {
+          "name": "product-manager",
+          "sourcePath": "Sin título/agency-agents/product/product-manager.md",
+          "reason": "Alinear el producto con problema real y usuarios.",
+          "activationMode": "task_based"
+        },
+        {
+          "name": "automation-governance-architect",
+          "sourcePath": "Sin título/agency-agents/specialized/automation-governance-architect.md",
+          "reason": "Definir aprobaciones, seguridad y control humano.",
+          "activationMode": "review_only"
+        }
+      ],
+      "channels": [
+        {
+          "provider": "telegram",
+          "label": "Roger Telegram",
+          "externalHandle": "",
+          "status": "not_connected",
+          "approvalPolicy": "always_approve",
+          "secretRef": ""
+        },
+        {
+          "provider": "whatsapp",
+          "label": "Roger WhatsApp",
+          "externalHandle": "",
+          "status": "not_connected",
+          "approvalPolicy": "always_approve",
+          "secretRef": ""
+        }
+      ],
+      "tasks": [
+        "task_control_tower_spec",
+        "task_chambaq_mvp",
+        "task_graphify_update",
+        "task_arize_provider_setup"
+      ],
+      "knowledge": {
+        "profilePath": "knowledge/members/roger/profile.md",
+        "soulPath": "knowledge/members/roger/soul.md",
+        "personalKnowledgeRoot": "knowledge/members/roger",
+        "graphPath": "graphify-out/members/roger/graph.json"
+      },
+      "hermesAgentId": "hermes_roger",
+      "createdAt": "2026-05-24T00:00:00-05:00",
+      "updatedAt": "2026-05-24T00:00:00-05:00"
+    }
+  ],
+  "hermesAgents": [
+    {
+      "id": "hermes_roger",
+      "memberId": "member_roger",
+      "name": "Hermes Roger Orchestrator",
+      "status": "ready",
+      "mission": "Ayudar a Roger a orquestar ChambaQ, el equipo, los agentes, el conocimiento, los prompts y la entrega del hackathon.",
+      "systemPromptPath": "knowledge/members/roger/prompts/system.md",
+      "customerPromptPath": "knowledge/members/roger/prompts/customer.md",
+      "profilePath": "knowledge/members/roger/profile.md",
+      "soulPath": "knowledge/members/roger/soul.md",
+      "projectKnowledgeScope": [
+        "docs/",
+        "hackathon/",
+        "agents/",
+        "dataset/",
+        "knowledge/project/"
+      ],
+      "personalKnowledgeScope": [
+        "knowledge/members/roger/"
+      ],
+      "graph": {
+        "graphJsonPath": "graphify-out/members/roger/graph.json",
+        "graphHtmlPath": "graphify-out/members/roger/graph.html",
+        "reportPath": "graphify-out/members/roger/GRAPH_REPORT.md",
+        "lastGeneratedAt": ""
+      },
+      "assignedAgencyAgents": [
+        "agents-orchestrator",
+        "project-manager-senior",
+        "product-manager",
+        "automation-governance-architect"
+      ],
+      "tools": [
+        "read_project_docs",
+        "query_graphify",
+        "assign_tasks",
+        "draft_external_message",
+        "propose_prompt_change",
+        "run_arize_evaluation"
+      ],
+      "channels": [
+        "telegram",
+        "whatsapp"
+      ],
+      "permissions": {
+        "canEditPrompts": true,
+        "canSendExternalMessages": false,
+        "requiresApprovalForExternalMessages": true,
+        "canRunGraphify": true,
+        "canRunArizeEvaluations": true
+      },
+      "observability": {
+        "arizeProject": "chambaq-control-tower",
+        "aiIntegrationId": "",
+        "traceEnabled": false
+      },
+      "createdAt": "2026-05-24T00:00:00-05:00",
+      "updatedAt": "2026-05-24T00:00:00-05:00"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task_control_tower_spec",
+      "title": "Definir ChambaQ Control Tower",
+      "description": "Documentar dashboard, modelo de datos, Hermes, Graphify y Arize.",
+      "status": "in_progress",
+      "priority": "high",
+      "ownerMemberId": "member_roger",
+      "supportHermesId": "hermes_roger",
+      "supportAgencyAgents": ["agents-orchestrator", "product-manager"],
+      "source": "user_request",
+      "dueDate": "2026-05-25",
+      "links": ["docs/control-tower/README.md"]
+    },
+    {
+      "id": "task_chambaq_mvp",
+      "title": "Construir MVP ChambaQ Agent",
+      "description": "Implementar demo local con datos seed, tools y UI.",
+      "status": "backlog",
+      "priority": "high",
+      "ownerMemberId": "member_roger",
+      "supportHermesId": "hermes_roger",
+      "supportAgencyAgents": ["project-manager-senior"],
+      "source": "hackathon_plan",
+      "dueDate": "2026-06-05",
+      "links": ["docs/cursor-build-plan/CURSOR_IMPLEMENTATION_PLAN.md"]
+    }
+  ]
+}
+

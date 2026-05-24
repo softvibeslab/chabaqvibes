@@ -1,0 +1,22 @@
+manifestVersion: 1.0
+
+projects:
+  - name: my-project
+    path: projects/my-project
+
+environmentGroups:
+  - name: development
+    environments:
+      - name: development-environment
+        url:
+          type: environment
+          value: DT_URL
+        auth:
+          token:
+            name: DT_TOKEN
+          oAuth:
+            clientId:
+              name: DT_CLIENT_ID
+            clientSecret:
+              name: DT_CLIENT_SECRET
+

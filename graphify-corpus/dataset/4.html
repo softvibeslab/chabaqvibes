@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChambaQ: Oportunidad y Talento Verificado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: He diseñado la aplicación como un panel de control narrativo y temático. El flujo guía al usuario desde el problema (el ciclo de la informalidad) hacia las soluciones interactivas de ChambaQ (mercado, educación, economía de datos), explica la tecnología subyacente de forma sencilla y concluye con el impacto humano. Esta estructura transforma un informe denso en una historia atractiva, priorizando la comprensión del usuario y la interacción sobre una réplica literal de la estructura del informe, lo que lo hace ideal para una audiencia amplia. -->
+    <!-- Visualization & Content Choices: 1. El ciclo de la pobreza (HTML/CSS): Informar -> Diagrama visual -> Justificación: Simplifica un concepto complejo. 2. Triángulo de Trade-offs (JS Interactivo): Organizar/Comparar -> Elemento interactivo -> Justificación: Permite a los usuarios experimentar la propuesta de valor del empleador de primera mano. 3. Impacto de la Certificación (Chart.js): Comparar -> Gráfico de barras dinámico -> Justificación: Cuantifica visualmente el beneficio de la educación, un pilar del proyecto. Los datos se pueden filtrar para mayor participación. 4. Modelo de Token (Tabla HTML): Comparar -> Tabla comparativa -> Justificación: Aclara el modelo de monetización utilizando análogos familiares. Todos los métodos evitan SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .trade-off-btn.selected { background-color: #0d9488; color: white; border-color: #0d9488; }
+        .trade-off-btn:disabled { background-color: #9ca3af; color: #e5e7eb; cursor: not-allowed; border-color: #9ca3af; }
+        .chart-container { position: relative; width: 100%; max-width: 700px; margin-left: auto; margin-right: auto; height: 350px; max-height: 450px; }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .stat-card-active { background-color: #c7d2fe; border-color: #4f46e5; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-teal-600">Chamba<span class="text-indigo-600">Q</span></a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#desafio" class="text-slate-600 hover:text-teal-600 transition">El Desafío</a>
+                <a href="#solucion" class="text-slate-600 hover:text-teal-600 transition">La Solución</a>
+                <a href="#tecnologia" class="text-slate-600 hover:text-teal-600 transition">Tecnología</a>
+                <a href="#impacto" class="text-slate-600 hover:text-teal-600 transition">Impacto</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <section id="hero" class="text-center mb-24">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-indigo-600">
+                    Conectando Talento. Verificando Confianza.
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+                ChambaQ es una plataforma revolucionaria que utiliza IA y Blockchain para erradicar la pobreza, empoderando a los trabajadores de oficios en México con educación, empleo formal y estabilidad financiera.
+            </p>
+        </section>
+
+        <section id="desafio" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">El Desafío: Rompiendo el Ciclo</h2>
+                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Más del 50% de la fuerza laboral en México opera en la informalidad, atrapada en un ciclo de inestabilidad. Esto afecta tanto a trabajadores como a empleadores.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-indigo-600 mb-4">Para el Trabajador:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">●</span><div><strong class="text-slate-700">Inestabilidad y Bajos Ingresos:</strong> Vivir al día, sin un flujo de trabajo constante.</div></li>
+                        <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">●</span><div><strong class="text-slate-700">Falta de Seguridad Social:</strong> Sin acceso a servicios de salud, crédito o ahorros para el retiro.</div></li>
+                        <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">●</span><div><strong class="text-slate-700">Barreras Educativas:</strong> Oportunidades limitadas para capacitación y certificación formal.</div></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-teal-600 mb-4">Para el Empleador:</h3>
+                     <ul class="space-y-3">
+                        <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">●</span><div><strong class="text-slate-700">Alta Rotación:</strong> Pérdida de tiempo y dinero buscando y reemplazando personal constantemente.</div></li>
+                        <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">●</span><div><strong class="text-slate-700">Personal No Cualificado:</strong> Riesgo de contratar a alguien sin las habilidades verificadas, resultando en pérdidas.</div></li>
+                        <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">●</span><div><strong class="text-slate-700">Ineficiencia en Contratación:</strong> Procesos largos y poco fiables para encontrar el talento adecuado.</div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="solucion" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">La Solución ChambaQ: Un Ecosistema de 3 Pilares</h2>
+                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">ChambaQ integra tres componentes clave para crear un mercado laboral justo, eficiente y próspero para todos.</p>
+            </div>
+            <div class="space-y-16">
+                
+                <div class="p-8 bg-white rounded-2xl shadow-xl">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center"><span class="text-indigo-600">Pilar 1:</span> Contratación Inteligente y Transparente</h3>
+                    <p class="text-center text-slate-600 mb-8 max-w-3xl mx-auto">Para los empleadores, ChambaQ introduce un sistema de contratación basado en el "Triángulo de Hierro". Debes elegir tus 2 prioridades principales, y la plataforma te conectará con el perfil de trabajador ideal. ¡Pruébalo!</p>
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <button id="btn-tiempo" class="trade-off-btn p-4 border-2 border-slate-300 rounded-lg font-bold text-lg transition duration-200 hover:border-teal-500 hover:text-teal-600">🕒 Rápido (Tiempo)</button>
+                        <button id="btn-calidad" class="trade-off-btn p-4 border-2 border-slate-300 rounded-lg font-bold text-lg transition duration-200 hover:border-teal-500 hover:text-teal-600">⭐ Calidad (Experiencia)</button>
+                        <button id="btn-dinero" class="trade-off-btn p-4 border-2 border-slate-300 rounded-lg font-bold text-lg transition duration-200 hover:border-teal-500 hover:text-teal-600">💲 Económico (Dinero)</button>
+                    </div>
+                    <div id="resultado-trade-off" class="text-center bg-slate-100 p-6 rounded-lg min-h-[100px] flex items-center justify-center">
+                        <p class="text-slate-500">Selecciona dos prioridades para ver el resultado.</p>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-white rounded-2xl shadow-xl">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-2 text-center"><span class="text-teal-600">Pilar 2:</span> Educación que Transforma Vidas</h3>
+                    <p class="text-center text-slate-600 mb-8 max-w-3xl mx-auto">La educación es la clave para la movilidad económica. A través de alianzas con <strong class="text-slate-700">aprende.org</strong> y certificaciones <strong class="text-slate-700">CONOCER</strong>, los trabajadores aumentan sus habilidades y sus ingresos de forma verificable. La certificación formal no es un gasto, es la mejor inversión.</p>
+                     <div class="text-center mb-6">
+                        <p class="font-semibold text-lg">Explora el impacto de la certificación:</p>
+                        <div class="flex justify-center space-x-2 md:space-x-4 mt-4">
+                            <button class="stat-btn stat-card-active text-sm md:text-base bg-indigo-100 border-2 border-indigo-200 text-indigo-800 font-semibold py-2 px-4 rounded-lg transition" data-stat="income">Ingreso</button>
+                            <button class="stat-btn bg-indigo-100 border-2 border-indigo-200 text-indigo-800 font-semibold py-2 px-4 rounded-lg transition" data-stat="formality">Empleo Formal</button>
+                            <button class="stat-btn bg-indigo-100 border-2 border-indigo-200 text-indigo-800 font-semibold py-2 px-4 rounded-lg transition" data-stat="health">Acceso a Salud</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="certificationImpactChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-white rounded-2xl shadow-xl">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center"><span class="text-indigo-600">Pilar 3:</span> La Nueva Economía de Datos Personales</h3>
+                     <p class="text-center text-slate-600 mb-8 max-w-3xl mx-auto">En ChambaQ, tu información y tu progreso te pertenecen y te benefician. Al capacitarte y trabajar, generas valor que se te recompensa en forma de tokens, fomentando una cultura de ahorro y propiedad.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr>
+                                    <th class="p-4 bg-slate-100 font-bold rounded-tl-lg">Modelo</th>
+                                    <th class="p-4 bg-slate-100 font-bold">Activo Recompensado</th>
+                                    <th class="p-4 bg-slate-100 font-bold rounded-tr-lg">Beneficio Principal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="p-4 font-bold text-slate-700">Brave (BAT)</td>
+                                    <td class="p-4">Atención del Usuario</td>
+                                    <td class="p-4">Gana por navegar la web de forma privada.</td>
+                                </tr>
+                                <tr class="border-b bg-teal-50">
+                                    <td class="p-4 font-bold text-teal-700">ChambaQ (CHQ)</td>
+                                    <td class="p-4 font-semibold text-teal-800">Datos de Capacitación y Rendimiento</td>
+                                    <td class="p-4 font-semibold text-teal-800">Gana por aprender, trabajar y mejorar tus habilidades.</td>
+                                </tr>
+                                 <tr>
+                                    <td class="p-4 font-bold text-slate-700 rounded-bl-lg">Golem Network</td>
+                                    <td class="p-4">Poder Computacional</td>
+                                    <td class="p-4 rounded-br-lg">Monetiza el poder de tu computadora que no usas.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologia" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">El Motor Tecnológico: IA + Blockchain</h2>
+                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">La confianza y la inteligencia de ChambaQ se basan en la sinergia de dos tecnologías de vanguardia.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-indigo-500">
+                    <h3 class="text-2xl font-bold text-indigo-600 mb-4">🔗 Blockchain: El Sello de Confianza</h3>
+                    <p class="text-slate-600 mb-4">Blockchain actúa como un notario digital inmutable. Garantiza que la información es auténtica y no puede ser manipulada.</p>
+                    <ul class="space-y-2 list-disc list-inside text-slate-700">
+                        <li><strong>Identidad Verificada:</strong> Tus certificaciones y tu historial son tuyos y a prueba de fraudes.</li>
+                        <li><strong>Contenido Auténtico:</strong> Combate la desinformación (como *deepfakes*) al crear un registro de origen para cada credencial.</li>
+                        <li><strong>Transparencia Total:</strong> Cada transacción y acuerdo queda registrado de forma segura y transparente.</li>
+                    </ul>
+                </div>
+                 <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-teal-500">
+                    <h3 class="text-2xl font-bold text-teal-600 mb-4">🧠 Inteligencia Artificial: El Amplificador de Poder</h3>
+                    <p class="text-slate-600 mb-4">La IA de ChambaQ no solo automatiza, sino que amplifica el potencial humano al aprender de la inteligencia colectiva de la red.</p>
+                    <ul class="space-y-2 list-disc list-inside text-slate-700">
+                        <li><strong>Matching "Superinteligente":</strong> Conecta al trabajador ideal con el proyecto perfecto basado en habilidades reales y predicciones de éxito.</li>
+                        <li><strong>Rutas de Aprendizaje Personalizadas:</strong> Te guía hacia los cursos y habilidades con mayor demanda y mejor remuneración.</li>
+                        <li><strong>Análisis Predictivo:</strong> La IA aprende de los datos de toda la red (de forma anónima y segura) para ofrecer mejores recomendaciones.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="impacto" class="text-center bg-gradient-to-r from-teal-600 to-indigo-700 text-white p-12 rounded-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">El Resultado: Más Tiempo, Más Dinero, Mejores Relaciones</h2>
+            <p class="text-lg md:text-xl text-indigo-100 max-w-3xl mx-auto mb-8">
+                Al final, ChambaQ no se trata de tecnología. Se trata de transformar vidas, ofreciendo un camino claro hacia la prosperidad y rompiendo las barreras que perpetúan la pobreza.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="bg-white text-teal-700 font-bold py-2 px-4 rounded-full">Seguridad Económica</span>
+                <span class="bg-white text-indigo-700 font-bold py-2 px-4 rounded-full">Desarrollo Profesional</span>
+                <span class="bg-white text-teal-700 font-bold py-2 px-4 rounded-full">Cultura de Ahorro</span>
+                <span class="bg-white text-indigo-700 font-bold py-2 px-4 rounded-full">Confianza y Reputación</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Proyecto ChambaQ. Cambiando el futuro del trabajo en México.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const tradeOffButtons = document.querySelectorAll('.trade-off-btn');
+            const resultadoDiv = document.getElementById('resultado-trade-off');
+            let selectedTradeOffs = [];
+
+            const tradeOffLogic = {
+                "tiempo-calidad": {
+                    sacrificado: 'dinero',
+                    resultado: '<h4 class="text-lg font-bold text-slate-800 mb-2">Resultado: Calidad Premium Urgente</h4><p class="text-slate-600">Obtendrás un <strong>Experto Certificado (Nivel 5+)</strong>. Ideal para proyectos críticos con plazos ajustados. El costo será <strong>mayor</strong>, pero la calidad y velocidad están garantizadas.</p>'
+                },
+                "tiempo-dinero": {
+                    sacrificado: 'calidad',
+                    resultado: '<h4 class="text-lg font-bold text-slate-800 mb-2">Resultado: Solución Rápida y Económica</h4><p class="text-slate-600">Se te asignará un <strong>Técnico de Nivel Medio (Nivel 2-4)</strong>. Perfecto para tareas estándar que necesitan resolverse rápido y sin un gran presupuesto. La calidad será buena, no excepcional.</p>'
+                },
+                "calidad-dinero": {
+                    sacrificado: 'tiempo',
+                    resultado: '<h4 class="text-lg font-bold text-slate-800 mb-2">Resultado: Inversión en Calidad</h4><p class="text-slate-600">Contratarás a un <strong>Artesano o Aprendiz Supervisado (Nivel 1+)</strong>. Ideal para proyectos sin prisa donde la calidad y el costo son prioridad. El tiempo de entrega será <strong>más largo</strong>.</p>'
+                }
+            };
+            
+            tradeOffButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const type = button.id.split('-')[1];
+                    
+                    if (selectedTradeOffs.includes(type)) {
+                        selectedTradeOffs = selectedTradeOffs.filter(t => t !== type);
+                        button.classList.remove('selected');
+                    } else {
+                        if (selectedTradeOffs.length < 2) {
+                            selectedTradeOffs.push(type);
+                            button.classList.add('selected');
+                        }
+                    }
+                    
+                    updateTradeOffUI();
+                });
+            });
+
+            function updateTradeOffUI() {
+                if (selectedTradeOffs.length === 2) {
+                    tradeOffButtons.forEach(btn => {
+                        const btnType = btn.id.split('-')[1];
+                        if (!selectedTradeOffs.includes(btnType)) {
+                            btn.disabled = true;
+                        }
+                    });
+                    const key = selectedTradeOffs.sort().join('-');
+                    resultadoDiv.innerHTML = tradeOffLogic[key].resultado;
+
+                } else {
+                    tradeOffButtons.forEach(btn => btn.disabled = false);
+                    resultadoDiv.innerHTML = '<p class="text-slate-500">Selecciona dos prioridades para ver el resultado.</p>';
+                }
+            }
+
+
+            const certificationData = {
+                labels: ['No Certificado', 'Certificado (CONOCER)'],
+                income: {
+                    data: [6858, 13667],
+                    label: 'Ingreso Mensual Promedio (MXN)',
+                    backgroundColor: ['#a5b4fc', '#4f46e5'],
+                },
+                formality: {
+                    data: [50, 93],
+                    label: '% en Empleo Formal',
+                    backgroundColor: ['#a5b4fc', '#4f46e5'],
+                },
+                health: {
+                    data: [45, 85],
+                    label: '% con Acceso a Servicios de Salud',
+                    backgroundColor: ['#a5b4fc', '#4f46e5'],
+                }
+            };
+
+            const ctx = document.getElementById('certificationImpactChart').getContext('2d');
+            let impactChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: certificationData.labels,
+                    datasets: [{
+                        label: certificationData.income.label,
+                        data: certificationData.income.data,
+                        backgroundColor: certificationData.income.backgroundColor,
+                        borderColor: ['#818cf8', '#312e81'],
+                        borderWidth: 1,
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { display: false }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    let value = context.raw;
+                                    if (label.includes('%')) {
+                                        return label + value + '%';
+                                    }
+                                    return label + '$' + value.toLocaleString('es-MX');
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const statButtons = document.querySelectorAll('.stat-btn');
+            statButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    statButtons.forEach(btn => btn.classList.remove('stat-card-active'));
+                    button.classList.add('stat-card-active');
+                    
+                    const stat = button.dataset.stat;
+                    impactChart.data.datasets[0].data = certificationData[stat].data;
+                    impactChart.data.datasets[0].label = certificationData[stat].label;
+                    impactChart.options.plugins.tooltip.callbacks.label = function(context) {
+                        let label = context.dataset.label || '';
+                         if (label) { label += ': '; }
+                         let value = context.raw;
+                         if (label.includes('%')) { return label + value + '%'; }
+                         return label + '$' + value.toLocaleString('es-MX');
+                    };
+                    impactChart.update();
+                });
+            });
+            
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.hash !== "") {
+                        e.preventDefault();
+                        const hash = this.hash;
+                        const target = document.querySelector(hash);
+                        if (target) {
+                           target.scrollIntoView({
+                               behavior: 'smooth'
+                           });
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Análisis de Mercado y Tecnología de ChambaQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- Application Structure Plan: The infographic is structured as a top-down narrative, starting with the high-level market problem and flowing into the specific solutions ChambaQ provides. The flow is: 1) Market Problem (Hook), 2) ChambaQ's Core Solution, 3) The Dual-User Ecosystem (Worker/Employer), 4) The Technology Trust Layer, 5) Competitive Differentiation, and 6) Social Impact Vision. This narrative structure was chosen to guide the user from a familiar problem to a novel solution, making complex concepts like tokenization and privacy-preserving AI digestible by grounding them in tangible benefits for each user segment. -->
+    <!-- Visualization & Content Choices: 
+        - Market Opportunity: Goal: Inform. Viz: Large number stat (HTML). Justification: High-impact to establish the scale of the problem.
+        - Worker Journey: Goal: Organize. Viz: HTML/CSS Flowchart. Justification: Clearly illustrates the user's progression from training to earning.
+        - Employer T-D-C Model: Goal: Compare/Relationships. Viz: Interactive Bar Chart (Chart.js/Canvas). Justification: Makes the core trade-off concept tangible and memorable through interaction.
+        - Technology Pillars: Goal: Compare/Organize. Viz: Radar Chart (Chart.js/Canvas). Justification: Effectively shows how multiple distinct technological concepts (Security, Privacy, Authenticity) contribute to the central theme of 'Trust'.
+        - Competitive Landscape: Goal: Compare. Viz: Styled HTML Table. Justification: Provides a direct, easy-to-scan comparison of features against established competitors.
+        - All choices use Canvas rendering via Chart.js or structured HTML/CSS, strictly adhering to the NO SVG/Mermaid constraint. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .material-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #1976D2;
+        }
+        @media (min-width: 768px) {
+            .stat-number {
+                font-size: 6rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#0D47A1] text-white py-6 text-center">
+        <div class="container mx-auto px-6">
+            <h1 class="text-3xl md:text-5xl font-bold">Análisis de Mercado y Tecnológico</h1>
+            <h2 class="text-2xl md:text-4xl font-bold text-amber-400 mt-2">ChambaQ</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-blue-100">Una inmersión profunda en cómo ChambaQ está preparado para redefinir el mercado de oficios en México a través de la sinergia de IA y Blockchain.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section class="text-center mb-16">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4">El Desafío del Mercado de Oficios</h3>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-8">La contratación de personal de oficios en México enfrenta una crisis de confianza y eficiencia. La alta rotación de personal no cualificado genera pérdidas millonarias y proyectos de baja calidad, creando una brecha entre la demanda de talento verificado y la oferta disponible.</p>
+            <div class="material-card bg-blue-50">
+                <p class="text-xl font-semibold text-blue-800">Pérdida por Contratación Inadecuada</p>
+                <p class="stat-number">30%+</p>
+                <p class="text-lg text-gray-700">Costo adicional estimado en proyectos por retrabajos, demoras y baja calidad debido a personal no cualificado, representando una oportunidad de mercado masiva para una solución basada en la confianza.</p>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-8 mb-16 items-center">
+            <div class="material-card">
+                <h3 class="text-2xl font-bold text-[#0D47A1] mb-4">La Solución: Un Ecosistema de Confianza</h3>
+                <p class="mb-6">ChambaQ introduce un modelo revolucionario que transforma la capacitación en una ventaja competitiva tangible. Al verificar las habilidades y la reputación en la Blockchain, creamos un mercado transparente y eficiente donde la calidad es la moneda de cambio.</p>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-amber-500 font-bold text-2xl mr-4">1.</span>
+                        <div>
+                            <h4 class="font-bold">Educación Continua</h4>
+                            <p class="text-gray-600">Alianza con <span class="font-semibold">Aprende.org</span> para ofrecer cursos de alta calidad avalados por la SEP, elevando el estándar profesional.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-amber-500 font-bold text-2xl mr-4">2.</span>
+                        <div>
+                            <h4 class="font-bold">Certificación Inmutable (NFTs)</h4>
+                            <p class="text-gray-600">Cada habilidad y curso completado se convierte en un activo digital único (NFT), creando un "Pasaporte de Habilidades" verificable y a prueba de fraudes.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-amber-500 font-bold text-2xl mr-4">3.</span>
+                        <div>
+                            <h4 class="font-bold">Gamificación y Progreso</h4>
+                            <p class="text-gray-600">Un sistema de niveles y tarifas progresivas incentiva la mejora continua, vinculando directamente el aprendizaje con el potencial de ingresos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="material-card">
+                <h3 class="text-2xl font-bold text-center text-[#0D47A1] mb-4">El Dilema del Empleador: T-D-C</h3>
+                <p class="text-center mb-6">El modelo "Tiempo, Dinero y Calidad" de ChambaQ permite a los empleadores tomar decisiones informadas. Elige tus dos prioridades y nuestra IA te conectará con el perfil ideal. Este gráfico visualiza cómo se ajustan las expectativas según tu elección.</p>
+                <div class="chart-container h-[300px] md:h-[350px]">
+                    <canvas id="tdcChart"></canvas>
+                </div>
+                <div class="mt-4 flex justify-center flex-wrap gap-2">
+                    <button class="tdc-btn bg-blue-100 text-blue-800 py-2 px-4 rounded-full" data-combo="tiempo-calidad">Rápido y de Calidad</button>
+                    <button class="tdc-btn bg-blue-100 text-blue-800 py-2 px-4 rounded-full" data-combo="tiempo-dinero">Rápido y Económico</button>
+                    <button class="tdc-btn bg-blue-100 text-blue-800 py-2 px-4 rounded-full" data-combo="calidad-dinero">Calidad y Económico</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-8 mb-16">
+            <div class="material-card">
+                 <h3 class="text-2xl font-bold text-center text-[#0D47A1] mb-4">El Pilar Tecnológico: IA + Blockchain</h3>
+                 <p class="text-center mb-6">La confianza en ChambaQ no es una promesa, es una arquitectura. La sinergia de IA y Blockchain crea un sistema seguro, privado y transparente por diseño. El gráfico de radar muestra cómo nuestras tecnologías fundamentales se combinan para crear un ecosistema robusto.</p>
+                <div class="chart-container">
+                    <canvas id="techRadarChart"></canvas>
+                </div>
+            </div>
+            <div class="material-card">
+                <h3 class="text-2xl font-bold text-[#0D47A1] mb-6">Ventaja Competitiva</h3>
+                <p class="mb-6">Mientras que las plataformas existentes se centran en la simple conexión, ChambaQ construye un ecosistema de valor a largo plazo basado en la educación y la reputación verificable. Esta tabla compara nuestro enfoque con los actores tradicionales del mercado.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="py-2 px-3 bg-blue-50 font-bold uppercase text-sm text-gray-600 border-b border-gray-200">Característica</th>
+                                <th class="py-2 px-3 bg-amber-50 font-bold uppercase text-sm text-amber-800 border-b border-gray-200 text-center">ChambaQ</th>
+                                <th class="py-2 px-3 bg-gray-50 font-bold uppercase text-sm text-gray-600 border-b border-gray-200 text-center">Plataformas Gig Tradicionales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-3 border-b border-gray-200">Verificación de Habilidades</td>
+                                <td class="py-3 px-3 border-b border-gray-200 text-center text-green-600 font-bold">Inmutable (NFTs)</td>
+                                <td class="py-3 px-3 border-b border-gray-200 text-center text-red-600">Autodeclarada</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-3 border-b border-gray-200">Modelo de Incentivos</td>
+                                <td class="py-3 px-3 border-b border-gray-200 text-center text-green-600 font-bold">Learn-to-Earn</td>
+                                <td class="py-3 px-3 border-b border-gray-200 text-center">Basado en Tareas</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-3 border-b border-gray-200">Privacidad de Datos</td>
+                                <td class="py-3 px-3 border-b border-gray-200 text-center text-green-600 font-bold">Inferencia Privada (FHE/ZKP)</td>
+                                <td class="py-3 px-3 border-b border-gray-200 text-center">Centralizada</td>
+                            </tr>
+                             <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-3 border-b border-gray-200">Combate a Desinformación</td>
+                                <td class="py-3 px-3 border-b border-gray-200 text-center text-green-600 font-bold">IA + Sello de Tiempo Blockchain</td>
+                                <td class="py-3 px-3 border-b border-gray-200 text-center">Moderación Manual</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4">Visión de Impacto Social</h3>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-8">ChambaQ es más que una plataforma; es un motor de cambio social. Buscamos combatir la pobreza y la desigualdad fomentando una cultura de mejora continua, empoderamiento económico y desarrollo personal.</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="material-card bg-amber-50">
+                    <h4 class="text-2xl font-bold text-amber-800">MÁS TIEMPO</h4>
+                    <p class="mt-2">Reduciendo la fricción en la búsqueda de trabajo y contratación.</p>
+                </div>
+                <div class="material-card bg-blue-50">
+                    <h4 class="text-2xl font-bold text-blue-800">MÁS DINERO</h4>
+                    <p class="mt-2">Vinculando habilidades verificadas con mejores tarifas y fomentando el ahorro.</p>
+                </div>
+                <div class="material-card bg-green-50">
+                    <h4 class="text-2xl font-bold text-green-800">MEJORES RELACIONES</h4>
+                    <p class="mt-2">Construyendo una comunidad basada en la confianza, la transparencia y el profesionalismo.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#0D47A1] text-white mt-16 py-6">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>&copy; 2025 ChambaQ. Infografía generada a partir de análisis estratégico. Todos los datos son representaciones visuales del informe de investigación.</p>
+        </div>
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxLength) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tdcData = {
+                'tiempo-calidad': { label: 'Rápido y de Calidad (Costo Alto)', data: [8, 10, 3] },
+                'tiempo-dinero': { label: 'Rápido y Económico (Calidad Baja)', data: [9, 3, 9] },
+                'calidad-dinero': { label: 'Calidad y Económico (Tiempo Lento)', data: [3, 9, 8] },
+                'default': { label: 'Equilibrio Base', data: [5, 5, 5] },
+            };
+
+            const tdcCtx = document.getElementById('tdcChart').getContext('2d');
+            const tdcChart = new Chart(tdcCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Velocidad de Entrega', 'Calidad del Trabajo', 'Competitividad del Costo'],
+                    datasets: [{
+                        label: tdcData.default.label,
+                        data: tdcData.default.data,
+                        backgroundColor: ['#42A5F5', '#FFC107', '#1976D2'],
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { beginAtZero: true, max: 10, display: false },
+                        y: { 
+                            ticks: {
+                                callback: function(value) {
+                                    const label = this.getLabelForValue(value);
+                                    return wrapLabel(label, 15);
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: (context) => ` Nivel de Prioridad: ${context.raw}`
+                            }
+                        }
+                    }
+                }
+            });
+
+            document.querySelectorAll('.tdc-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const combo = button.dataset.combo;
+                    const chartData = tdcData[combo];
+                    tdcChart.data.datasets[0].data = chartData.data;
+                    tdcChart.data.datasets[0].label = chartData.label;
+                    tdcChart.update();
+                });
+            });
+
+            const radarCtx = document.getElementById('techRadarChart').getContext('2d');
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Seguridad de Datos',
+                        ['Privacidad por', 'Diseño (FHE/ZKP)'],
+                        'Autenticidad (NFTs)',
+                        ['Transparencia', 'y Auditabilidad'],
+                        'Monetización Justa',
+                        ['Detección de', 'Fraude con IA']
+                    ],
+                    datasets: [{
+                        label: 'Robustez Tecnológica de ChambaQ',
+                        data: [9, 10, 9, 8, 8, 9],
+                        fill: true,
+                        backgroundColor: 'rgba(25, 118, 210, 0.2)',
+                        borderColor: '#1976D2',
+                        pointBackgroundColor: '#1976D2',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#1976D2'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            pointLabels: { 
+                                font: { size: 12, weight: '500' },
+                                color: '#0D47A1'
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                color: 'rgba(0, 0, 0, 0.5)',
+                                stepSize: 2
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["employer_id", "trade", "city", "urgency", "budget_mxn", "quality_priority", "description", "status"],
+    "properties": {
+      "employer_id": { "bsonType": "string" },
+      "trade": { "bsonType": "string" },
+      "trade_canonical": { "bsonType": "string" },
+      "city": { "bsonType": "string" },
+      "state": { "bsonType": "string" },
+      "neighborhood": { "bsonType": ["string", "null"] },
+      "urgency": { "bsonType": "string" },
+      "budget_mxn": { "bsonType": "int" },
+      "quality_priority": { "enum": ["low", "medium", "high"] },
+      "description": { "bsonType": "string" },
+      "status": { "enum": ["new", "shortlisted", "outreach_drafted", "contacted", "closed", "cancelled"] },
+      "shortlisted_worker_ids": { "bsonType": "array", "items": { "bsonType": "string" } },
+      "created_at": { "bsonType": "string" }
+    }
+  }
+}
+

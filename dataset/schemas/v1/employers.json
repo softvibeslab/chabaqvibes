@@ -1,0 +1,16 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "type", "city", "contact_name", "phone"],
+    "properties": {
+      "name": { "bsonType": "string" },
+      "type": { "bsonType": "string" },
+      "city": { "bsonType": "string" },
+      "state": { "bsonType": "string" },
+      "contact_name": { "bsonType": "string" },
+      "phone": { "bsonType": "string" },
+      "trusted": { "bsonType": "bool" }
+    }
+  }
+}
+

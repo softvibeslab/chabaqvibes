@@ -1,0 +1,15 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["worker_id", "employer_id", "rating", "comment", "job_type"],
+    "properties": {
+      "worker_id": { "bsonType": "string" },
+      "employer_id": { "bsonType": "string" },
+      "rating": { "bsonType": ["double", "int"] },
+      "comment": { "bsonType": "string" },
+      "job_type": { "bsonType": "string" },
+      "created_at": { "bsonType": "string" }
+    }
+  }
+}
+

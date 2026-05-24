@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Estrategia de Mercado y Tecnológica de ChambaQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues (Professional & Vibrant) -->
+    <!-- Application Structure Plan: The infographic follows a compelling narrative arc. It begins with the high-level vision, then dives into the core 'Multilayer Strategy', visualizing the two main technology pillars: AI and Blockchain. Each pillar's components are detailed in dedicated sub-sections. It then visualizes the synergy between them, followed by key implementation challenges and a strategic roadmap timeline. This structure transforms a dense report into an explorable, story-driven experience, guiding the user from 'what' to 'how' and 'why', which is more effective for data digestion than a linear format. -->
+    <!-- Visualization & Content Choices: Report Info: Core Strategy -> Goal: Organize -> Viz: HTML/CSS Flowchart -> Justification: Clearly illustrates the two-pillar structure. Report Info: Tokenomics -> Goal: Compare composition -> Viz: Chart.js Donut Chart -> Justification: Best for showing parts of a whole. Report Info: AI/Blockchain Features -> Goal: Inform/Organize -> Viz: Icon-based feature cards -> Justification: Breaks down complex features into easily scannable points. Report Info: Roadmap -> Goal: Show change over time -> Viz: HTML/CSS Timeline -> Justification: Classic, intuitive way to represent phased development. All choices are implemented via HTML/CSS or Canvas, confirming NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+        .bg-brand-deep-blue { background-color: #003f5c; }
+        .bg-brand-mid-blue { background-color: #2f4b7c; }
+        .text-brand-accent-orange { color: #ff7c43; }
+        .bg-brand-accent-orange { background-color: #ff7c43; }
+        .border-brand-accent-orange { border-color: #ff7c43; }
+        .text-brand-accent-yellow { color: #ffa600; }
+        .section-card { background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 2rem; }
+        .chart-container { position: relative; width: 100%; max-width: 450px; margin-left: auto; margin-right: auto; height: 320px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .nav-link.active { color: #ff7c43; font-weight: 600; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-brand-deep-blue text-white text-center p-8 md:p-12">
+        <h1 class="text-4xl md:text-5xl font-extrabold">ChambaQ</h1>
+        <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-200">Análisis Infográfico de la Estrategia Tecnológica y de Mercado para Revolucionar el Empleo</p>
+    </header>
+
+    <nav id="navbar" class="sticky top-0 bg-white/80 backdrop-blur-sm shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center items-center h-16 space-x-4 md:space-x-8 overflow-x-auto">
+                <a href="#vision" class="nav-link text-gray-600 hover:text-brand-accent-orange transition-colors duration-300 whitespace-nowrap px-2">Visión</a>
+                <a href="#estrategia" class="nav-link text-gray-600 hover:text-brand-accent-orange transition-colors duration-300 whitespace-nowrap px-2">Estrategia</a>
+                <a href="#tecnologia" class="nav-link text-gray-600 hover:text-brand-accent-orange transition-colors duration-300 whitespace-nowrap px-2">Tecnología</a>
+                <a href="#hoja-de-ruta" class="nav-link text-gray-600 hover:text-brand-accent-orange transition-colors duration-300 whitespace-nowrap px-2">Hoja de Ruta</a>
+                <a href="#beneficios" class="nav-link text-gray-600 hover:text-brand-accent-orange transition-colors duration-300 whitespace-nowrap px-2">Beneficios</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8 space-y-12">
+
+        <section id="vision" class="scroll-mt-20 text-center">
+            <div class="section-card">
+                <h2 class="text-3xl font-bold text-brand-deep-blue mb-4">El Futuro del Trabajo, Reimaginado</h2>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">ChambaQ se posiciona para transformar el mercado laboral global mediante una plataforma unificada que fusiona la <strong class="text-brand-mid-blue">inteligencia artificial</strong> para la optimización del talento con la <strong class="text-brand-accent-orange">confianza y transparencia</strong> de la tecnología Blockchain. El objetivo es crear un ecosistema más justo, eficiente y empoderador para trabajadores y empleadores.</p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                     <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-brand-mid-blue">90%</h3>
+                        <p class="font-semibold">Reducción Potencial en Fraude de Credenciales</p>
+                        <p class="text-sm text-gray-600">Gracias a la verificación inmutable en Blockchain.</p>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-brand-accent-orange">75%</h3>
+                        <p class="font-semibold">Mejora en la Precisión de Coincidencias</p>
+                        <p class="text-sm text-gray-600">Utilizando IA para analizar habilidades y ajuste cultural.</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-gray-700">50%</h3>
+                        <p class="font-semibold">Más Rápido el Proceso de Contratación</p>
+                        <p class="text-sm text-gray-600">Automatizando la verificación y la preselección.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="estrategia" class="scroll-mt-20">
+            <div class="section-card">
+                <h2 class="text-3xl font-bold text-brand-deep-blue mb-2 text-center">La Estrategia Multicapa</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">La arquitectura de ChambaQ se basa en dos pilares tecnológicos interconectados que trabajan en sinergia para potenciar todo el ecosistema.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <div class="w-full md:w-2/5 p-6 bg-blue-100/50 rounded-lg text-center border-l-4 border-brand-mid-blue">
+                        <h3 class="text-2xl font-bold text-brand-mid-blue mb-2">Capa 1: Inteligencia Artificial</h3>
+                        <p class="text-gray-700">El motor que optimiza, personaliza y predice. La IA analiza datos para crear las conexiones más efectivas y guiar el desarrollo profesional.</p>
+                    </div>
+                    <div class="text-4xl font-bold text-brand-accent-orange">+</div>
+                    <div class="w-full md:w-2/5 p-6 bg-orange-100/50 rounded-lg text-center border-l-4 border-brand-accent-orange">
+                         <h3 class="text-2xl font-bold text-brand-accent-orange mb-2">Capa 2: Confianza Blockchain</h3>
+                         <p class="text-gray-700">La base que garantiza la seguridad, transparencia y control del usuario. Blockchain crea un registro inmutable de la identidad y logros profesionales.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <div class="inline-block text-2xl font-bold text-white bg-brand-deep-blue px-6 py-3 rounded-full shadow-lg">
+                        = Ecosistema de Empleo Descentralizado y Eficiente
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologia" class="scroll-mt-20 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="section-card">
+                <h3 class="text-2xl font-bold text-brand-mid-blue mb-6">Desglose de la Capa de IA</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-2xl mt-1">🤖</div>
+                        <div>
+                            <h4 class="font-semibold">Coincidencia Inteligente</h4>
+                            <p class="text-sm text-gray-600">Algoritmos de PLN y ML que analizan CVs y ofertas de trabajo para una precisión superior.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-2xl mt-1">💬</div>
+                        <div>
+                            <h4 class="font-semibold">IA Conversacional (Chatbots y SMS)</h4>
+                            <p class="text-sm text-gray-600">Interacción 24/7 para preselección, programación y soporte, accesible en múltiples canales.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-2xl mt-1">🧠</div>
+                        <div>
+                            <h4 class="font-semibold">Aprendizaje Personalizado</h4>
+                            <p class="text-sm text-gray-600">Identifica brechas de habilidades y recomienda rutas de aprendizaje para potenciar el perfil del usuario.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-2xl mt-1">📈</div>
+                        <div>
+                            <h4 class="font-semibold">Análisis Predictivo de Carrera</h4>
+                            <p class="text-sm text-gray-600">Prevé tendencias del mercado y sugiere trayectorias profesionales con alto potencial de crecimiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-card">
+                 <h3 class="text-2xl font-bold text-brand-accent-orange mb-6">Desglose de la Capa Blockchain</h3>
+                 <div class="space-y-4">
+                     <div class="flex items-start space-x-4">
+                        <div class="text-2xl mt-1">📜</div>
+                        <div>
+                            <h4 class="font-semibold">Credenciales Verificables (NFTs)</h4>
+                            <p class="text-sm text-gray-600">Títulos y certificados como activos digitales únicos, eliminando el fraude y agilizando la verificación.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-2xl mt-1">👤</div>
+                        <div>
+                            <h4 class="font-semibold">Identidad Descentralizada (DIDs)</h4>
+                            <p class="text-sm text-gray-600">El usuario tiene control total sobre sus datos profesionales, decidiendo qué y con quién compartir.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start space-x-4">
+                        <div class="text-2xl mt-1">🤝</div>
+                        <div>
+                            <h4 class="font-semibold">Contratos Inteligentes</h4>
+                            <p class="text-sm text-gray-600">Automatizan acuerdos, pagos por hitos y procesos administrativos, reduciendo disputas y costos.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start space-x-4">
+                        <div class="text-2xl mt-1">🗳️</div>
+                        <div>
+                            <h4 class="font-semibold">Gobernanza Comunitaria (DAO)</h4>
+                            <p class="text-sm text-gray-600">Los poseedores de tokens CHQ votan sobre el futuro de la plataforma, asegurando una evolución descentralizada.</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="section-card lg:col-span-2">
+                 <h3 class="text-2xl font-bold text-brand-deep-blue mb-4 text-center">La Economía del Token CHQ</h3>
+                 <p class="text-center text-gray-600 mb-6 max-w-3xl mx-auto">El token CHQ es el combustible del ecosistema, diseñado para incentivar la participación, la gobernanza y el crecimiento sostenible de la plataforma.</p>
+                 <div class="chart-container">
+                     <canvas id="tokenomicsChart"></canvas>
+                 </div>
+                 <div class="mt-6 text-center text-sm text-gray-600">
+                    <p>Este gráfico de dona ilustra la distribución funcional del token. Cada segmento representa un pilar clave que asegura un ecosistema equilibrado y participativo, donde el uso de la plataforma, la toma de decisiones y el desarrollo de habilidades son recompensados.</p>
+                 </div>
+            </div>
+        </section>
+
+        <section id="hoja-de-ruta" class="scroll-mt-20">
+            <div class="section-card">
+                 <h2 class="text-3xl font-bold text-brand-deep-blue mb-8 text-center">Hoja de Ruta Estratégica</h2>
+                <div class="relative wrap overflow-hidden p-2 md:p-10 h-full">
+                    <div class="absolute h-full border-2 border-opacity-20 border-brand-mid-blue" style="left: 50%"></div>
+                    <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-brand-deep-blue shadow-xl w-12 h-12 rounded-full">
+                            <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
+                        </div>
+                        <div class="order-1 bg-brand-mid-blue/10 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-brand-deep-blue text-xl">Fase 1: MVP y Plataforma Central</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-700">Desarrollo del motor de IA, implementación de credenciales como NFTs y contratos inteligentes básicos. Foco en la UX para adopción temprana.</p>
+                        </div>
+                    </div>
+                    <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-brand-deep-blue shadow-xl w-12 h-12 rounded-full">
+                            <h1 class="mx-auto text-white text-lg font-semibold">2</h1>
+                        </div>
+                        <div class="order-1 bg-orange-100/80 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-brand-accent-orange text-xl">Fase 2: Expansión del Ecosistema</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-700">Lanzamiento del token CHQ y la DAO. Integración con canales masivos (SMS, WhatsApp) para ampliar el alcance y la accesibilidad.</p>
+                        </div>
+                    </div>
+                    <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-brand-deep-blue shadow-xl w-12 h-12 rounded-full">
+                            <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
+                        </div>
+                        <div class="order-1 bg-brand-mid-blue/10 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-brand-deep-blue text-xl">Fase 3: Escalado Global</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-700">Introducción de análisis predictivos de carrera avanzados e interoperabilidad entre cadenas para un impacto global y sostenible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beneficios" class="scroll-mt-20">
+             <div class="section-card">
+                 <h2 class="text-3xl font-bold text-brand-deep-blue mb-8 text-center">Beneficios para Todo el Ecosistema</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl text-brand-mid-blue mb-2">Para Buscadores de Empleo</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Orientación de carrera personalizada.</li>
+                            <li>Perfil profesional verificable y portátil.</li>
+                            <li>Control total sobre sus datos personales.</li>
+                            <li>Acceso a desarrollo de habilidades continuo.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                         <h3 class="font-bold text-xl text-brand-accent-orange mb-2">Para Empleadores</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Contratación más rápida y precisa.</li>
+                            <li>Reducción del fraude de credenciales.</li>
+                            <li>Acceso a un pool de talento verificado.</li>
+                            <li>Mejor retención del talento.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                         <h3 class="font-bold text-xl text-gray-700 mb-2">Para el Ecosistema</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Mayor transparencia y confianza.</li>
+                            <li>Reducción de intermediarios y costos.</li>
+                            <li>Un mercado laboral más equitativo.</li>
+                            <li>Bases para el futuro del trabajo descentralizado.</li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+        </section>
+    </main>
+    <footer class="bg-brand-deep-blue text-white text-center p-4 mt-12">
+        <p class="text-sm">&copy; 2025 Infografía de ChambaQ. Una visualización estratégica.</p>
+    </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const wrapLabel = (label) => {
+            const maxLineLength = 16;
+            if (label.length <= maxLineLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLineLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+
+        const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+        const tokenomicsData = {
+            labels: [
+                wrapLabel('Utilidad de Plataforma'), 
+                wrapLabel('Gobernanza y Votación DAO'), 
+                wrapLabel('Incentivos a la Comunidad')
+            ],
+            datasets: [{
+                label: 'Distribución Funcional del Token CHQ',
+                data: [45, 25, 30],
+                backgroundColor: [
+                    '#2f4b7c', 
+                    '#665191',
+                    '#ffa600'
+                ],
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                hoverOffset: 4
+            }]
+        };
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: tokenomicsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                             font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                    });
+                }
+            });
+        }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
+</body>
+</html>

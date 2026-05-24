@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chambaq.local/schemas/control-tower/member-profile.schema.json",
+  "title": "MemberProfile",
+  "type": "object",
+  "required": ["id", "displayName", "handle", "role", "purpose", "status", "hermesAgentId"],
+  "properties": {
+    "id": { "type": "string" },
+    "displayName": { "type": "string" },
+    "handle": { "type": "string" },
+    "role": { "type": "string" },
+    "purpose": { "type": "string" },
+    "status": { "type": "string", "enum": ["draft", "active", "paused", "archived"] },
+    "bio": { "type": "string" },
+    "superpowers": { "type": "array", "items": { "type": "string" } },
+    "skills": { "type": "array", "items": { "type": "string" } },
+    "agencyAgents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "sourcePath", "reason", "activationMode"],
+        "properties": {
+          "name": { "type": "string" },
+          "sourcePath": { "type": "string" },
+          "reason": { "type": "string" },
+          "activationMode": {
+            "type": "string",
+            "enum": ["always_on", "task_based", "review_only", "on_request"]
+          }
+        }
+      }
+    },
+    "channels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["provider", "status"],
+        "properties": {
+          "provider": { "type": "string", "enum": ["telegram", "whatsapp", "email", "other"] },
+          "label": { "type": "string" },
+          "externalHandle": { "type": "string" },
+          "status": { "type": "string", "enum": ["not_connected", "pending", "connected", "paused"] },
+          "approvalPolicy": { "type": "string", "enum": ["always_approve", "trusted_drafts", "disabled"] },
+          "secretRef": { "type": "string" }
+        }
+      }
+    },
+    "tasks": { "type": "array", "items": { "type": "string" } },
+    "knowledge": {
+      "type": "object",
+      "properties": {
+        "profilePath": { "type": "string" },
+        "soulPath": { "type": "string" },
+        "personalKnowledgeRoot": { "type": "string" },
+        "graphPath": { "type": "string" }
+      }
+    },
+    "hermesAgentId": { "type": "string" },
+    "createdAt": { "type": "string" },
+    "updatedAt": { "type": "string" }
+  }
+}
+

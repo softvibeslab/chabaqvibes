@@ -1,0 +1,15 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["worker_id", "name", "issuer", "status"],
+    "properties": {
+      "worker_id": { "bsonType": "string" },
+      "name": { "bsonType": "string" },
+      "issuer": { "bsonType": "string" },
+      "status": { "enum": ["verified", "self_reported", "expired"] },
+      "issued_at": { "bsonType": "string" },
+      "expires_at": { "bsonType": ["string", "null"] }
+    }
+  }
+}
+
